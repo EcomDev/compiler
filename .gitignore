@@ -1,0 +1,4 @@
+/vendor/
+/bin/
+/build/
+/composer.lock # Ignore lock file, to make possible build to fail if composer versions are failing

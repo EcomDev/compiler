@@ -1,0 +1,29 @@
+{
+    "name": "ecomdev/compiler",
+    "description": "Compiler of parseable data structures from (XML, JSON, etc) into PHP code that can be included into application",
+    "type": "library",
+    "require-dev": {
+        "phpspec/phpspec": "^2.4",
+        "ciaranmcnulty/phpspec-typehintedmethods": "^1.1",
+        "mikey179/vfsStream": "^1.6",
+        "php": ">= 5.4",
+        "henrikbjorn/phpspec-code-coverage": "^2.0"
+    },
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Ivan Chepurnyi",
+            "email": "ivan@ecomdev.org"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "EcomDev\\Compiler\\": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}

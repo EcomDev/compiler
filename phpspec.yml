@@ -1,0 +1,13 @@
+suites:
+  default:
+    namespace: EcomDev\Compiler
+    psr4_prefix: EcomDev\Compiler
+    src_path: %paths.config%/src
+    spec_path: %paths.config%
+formatter.name: pretty
+code_coverage:
+  output: build/coverage
+  format: html
+extensions:
+  - PhpSpec\Extension\CodeCoverageExtension
+  - Cjm\PhpSpec\Extension\TypeHintedMethodsExtension
