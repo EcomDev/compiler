@@ -8,12 +8,6 @@ use Prophecy\Argument;
 
 class ExportSpec extends ObjectBehavior
 {
-    function it_is_initializable()
-    {
-        $this->shouldHaveType('EcomDev\Compiler\Export');
-        $this->shouldImplement('EcomDev\Compiler\ExportInterface');
-    }
-
     function it_should_export_float_as_float()
     {
         $this->export(1.01)->shouldReturn('1.01');

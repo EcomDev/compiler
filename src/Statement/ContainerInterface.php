@@ -5,12 +5,20 @@ namespace EcomDev\Compiler\Statement;
 use EcomDev\Compiler\StatementInterface;
 
 interface ContainerInterface
-    extends \Iterator
+    extends \IteratorAggregate
 {
     /**
-     * Returns current statement form the list
+     * Adds a new statement to a container
      *
-     * @return StatementInterface
+     * @param StatementInterface $statement
+     * @return $this
      */
-    public function current();
+    public function add(StatementInterface $statement);
+
+    /**
+     * Returns available statements via iterator
+     *
+     * @return StatementInterface[]
+     */
+    public function getIterator();
 }

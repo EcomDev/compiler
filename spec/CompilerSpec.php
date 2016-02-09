@@ -15,12 +15,6 @@ class CompilerSpec extends ObjectBehavior
         $this->beConstructedWith($storage);
     }
 
-    function it_is_constructed_with_needed_arguments()
-    {
-        $this->shouldHaveType('EcomDev\Compiler\Compiler');
-        $this->shouldImplement('EcomDev\Compiler\CompilerInterface');
-    }
-
     function it_flushes_storage_on_flush(StorageInterface $storage)
     {
         $storage->flush()
