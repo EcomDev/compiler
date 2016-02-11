@@ -53,4 +53,12 @@ class ClosureSpec extends ObjectBehavior
         $message = 'Argument #0 does not implement EcomDev\Compiler\StatementInterface';
         $this->shouldThrow(new \InvalidArgumentException($message))->duringInstantiation();
     }
+
+    function it_allows_adding_items_to_container(StatementInterface $body,
+                                                 ContainerInterface $container)
+    {
+        $container->add($body)->willReturn($container);
+        $this->beConstructedWith([], $container);
+        $this->add($body)->shouldReturn($this);
+    }
 }

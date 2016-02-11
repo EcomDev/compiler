@@ -41,7 +41,12 @@ class Closure implements StatementInterface
         $this->body = $body;
     }
 
-
+    /**
+     * Compiles a statement into a closure string
+     *
+     * @param ExportInterface $export
+     * @return string
+     */
     public function compile(ExportInterface $export)
     {
         $arguments = [];
@@ -58,4 +63,15 @@ class Closure implements StatementInterface
         return sprintf("function (%s) {\n%s\n}", implode(', ', $arguments), implode("\n", $body));
     }
 
+    /**
+     * Adds a new statement into body of closure
+     *
+     * @param StatementInterface $statement
+     * @return $this
+     */
+    public function add(StatementInterface $statement)
+    {
+        $this->body->add($statement);
+        return $this;
+    }
 }
