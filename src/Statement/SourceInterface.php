@@ -5,7 +5,6 @@ namespace EcomDev\Compiler\Statement;
 /**
  * Source interface
  *
- *
  */
 interface SourceInterface extends \Serializable
 {

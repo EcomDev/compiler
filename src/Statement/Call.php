@@ -8,7 +8,6 @@ use EcomDev\Compiler\StatementInterface;
 /**
  * Call statement
  *
- * 
  */
 class Call implements StatementInterface
 {

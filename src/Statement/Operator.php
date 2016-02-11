@@ -11,22 +11,95 @@ use EcomDev\Compiler\StatementInterface;
  */
 class Operator implements StatementInterface
 {
+    /**
+     * Addition operator
+     *
+     * @var string
+     */
     const ADD = 'add';
+
+    /**
+     * Deduction operator
+     *
+     * @var string
+     */
     const SUB = 'sub';
+
+    /**
+     * Multiplication operator
+     *
+     * @var string
+     */
     const MULTIPLY = 'multiply';
 
+    /**
+     * Equal operator
+     *
+     * @var string
+     */
     const EQUAL = 'equal';
+
+    /**
+     * Strict equal operator
+     *
+     * @var string
+     */
     const EQUAL_STRICT = 'equal_strict';
 
+    /**
+     * Not equal operator
+     *
+     * @var string
+     */
     const NOT_EQUAL = 'not_equal';
+
+    /**
+     * Strict not equal operator
+     *
+     * @var string
+     */
     const NOT_EQUAL_STRICT = 'not_equal_strict';
 
+    /**
+     * Assign operator
+     *
+     * @var string
+     */
     const ASSIGN = 'assign';
+
+    /**
+     * Assign addition operator
+     *
+     * @var string
+     */
     const ASSIGN_ADD = 'assign_add';
+
+    /**
+     * Assign deduction operator
+     *
+     * @var string
+     */
     const ASSIGN_SUB = 'assign_sub';
+
+    /**
+     * Assign multiply operator
+     *
+     * @var string
+     */
     const ASSIGN_MULTIPLY = 'assign_multiply';
 
+    /**
+     * Boolean and operator
+     *
+     * @var string
+     */
     const BOOL_AND = 'and';
+
+    /**
+     * Boolean or operator
+     *
+     * @var string
+     */
     const BOOL_OR = 'or';
 
     /**

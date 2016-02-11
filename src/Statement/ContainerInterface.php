@@ -4,6 +4,10 @@ namespace EcomDev\Compiler\Statement;
 
 use EcomDev\Compiler\StatementInterface;
 
+/**
+ * Container interface
+ *
+ */
 interface ContainerInterface
     extends \IteratorAggregate
 {

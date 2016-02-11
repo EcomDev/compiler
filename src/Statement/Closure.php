@@ -5,6 +5,10 @@ namespace EcomDev\Compiler\Statement;
 use EcomDev\Compiler\ExportInterface;
 use EcomDev\Compiler\StatementInterface;
 
+/**
+ * Closure statement
+ *
+ */
 class Closure implements StatementInterface
 {
     /**

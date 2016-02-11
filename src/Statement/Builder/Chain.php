@@ -5,6 +5,10 @@ namespace EcomDev\Compiler\Statement\Builder;
 use EcomDev\Compiler\Statement\Builder;
 use EcomDev\Compiler\StatementInterface;
 
+/**
+ * Chain builder class
+ *
+ */
 class Chain
 {
     /**
