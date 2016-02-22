@@ -39,11 +39,4 @@ interface StorageInterface
      * @return $this
      */
     public function flush();
-
-    /**
-     * Return a driver pool
-     *
-     * @return Storage\DriverInterface
-     */
-    public function getDriver();
 }

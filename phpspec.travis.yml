@@ -4,7 +4,12 @@ suites:
     psr4_prefix: EcomDev\Compiler
     src_path: %paths.config%/src
     spec_path: %paths.config%
-formatter.name: nyan.cat
+
+formatter.name: pretty
+
+code_coverage:
+  format: clover
+  output: build/coverage.xml
+
 extensions:
-  - PhpSpec\NyanFormattersExtension\Extension
-  - Cjm\PhpSpec\Extension\TypeHintedMethodsExtension
+  - PhpSpec\Extension\CodeCoverageExtension

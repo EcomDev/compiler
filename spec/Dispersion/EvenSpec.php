@@ -20,5 +20,6 @@ class EvenSpec extends ObjectBehavior
         $this->calculate('something')->shouldReturn('oehns');
         $this->calculate('abc')->shouldReturn('bacba');
         $this->calculate('ob')->shouldReturn('bbbbb');
+        $this->calculate('o')->shouldReturn('ooooo');
     }
 }
