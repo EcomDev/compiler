@@ -44,4 +44,5 @@ class IndexSpec extends ObjectBehavior
         $this->count()->shouldReturn(3);
     }
 
+
 }

@@ -7,7 +7,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Array access statement
- *
  */
 class ArrayAccess implements StatementInterface
 {
@@ -28,7 +27,7 @@ class ArrayAccess implements StatementInterface
     /**
      * Constructor for statement access
      *
-     * @param StatementInterface $array
+     * @param StatementInterface                 $array
      * @param string|int|null|StatementInterface $key
      */
     public function __construct(StatementInterface $array, $key = null)
@@ -40,7 +39,7 @@ class ArrayAccess implements StatementInterface
     /**
      * Compiles a statement
      *
-     * @param ExportInterface $export
+     * @param  ExportInterface $export
      * @return string
      */
     public function compile(ExportInterface $export)

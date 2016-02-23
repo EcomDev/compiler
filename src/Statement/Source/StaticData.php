@@ -42,11 +42,13 @@ class StaticData implements SourceInterface
 
     public function serialize()
     {
-        return serialize([
+        return serialize(
+            [
             'id' => $this->id,
             'checksum' => $this->checksum,
             'container' => $this->container
-        ]);
+            ]
+        );
     }
 
     public function unserialize($serialized)
@@ -61,5 +63,4 @@ class StaticData implements SourceInterface
     {
         return $this->container;
     }
-
 }

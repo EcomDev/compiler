@@ -8,7 +8,6 @@ use EcomDev\Compiler\Storage\ReferenceInterface;
  * Storage for sources
  *
  * Source is stored with particular reference
- *
  */
 interface StorageInterface
 {
@@ -21,14 +20,15 @@ interface StorageInterface
     /**
      * Tries to find reference within multiple storage
      *
-     * @param Statement\SourceInterface $source
+     * @param  Statement\SourceInterface $source
+     * @return bool|ReferenceInterface
      */
     public function find(Statement\SourceInterface $source);
 
     /**
      * Tries to interpret the existing reference
      *
-     * @param ReferenceInterface $reference
+     * @param  ReferenceInterface $reference
      * @return string
      */
     public function interpret(ReferenceInterface $reference);

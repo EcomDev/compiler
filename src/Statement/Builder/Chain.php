@@ -7,7 +7,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Chain builder class
- *
  */
 class Chain
 {
@@ -29,7 +28,7 @@ class Chain
      * Creates a new chain statement
      *
      * @param StatementInterface $start
-     * @param Builder $builder
+     * @param Builder            $builder
      */
     public function __construct(StatementInterface $start, Builder $builder)
     {
@@ -40,7 +39,7 @@ class Chain
     /**
      * Creates property chain item
      *
-     * @param string|StatementInterface $name
+     * @param  string|StatementInterface $name
      * @return $this
      */
     public function property($name)
@@ -52,8 +51,8 @@ class Chain
     /**
      * Creates method call chain item
      *
-     * @param string|StatementInterface $name
-     * @param array $arguments
+     * @param  string|StatementInterface $name
+     * @param  array                     $arguments
      * @return $this
      */
     public function method($name, array $arguments = [])
@@ -66,7 +65,7 @@ class Chain
     /**
      * Creates array chain item
      *
-     * @param string|StatementInterface $key
+     * @param  string|StatementInterface $key
      * @return $this
      */
     public function assoc($key)
@@ -84,5 +83,4 @@ class Chain
     {
         return $this->current;
     }
-
 }

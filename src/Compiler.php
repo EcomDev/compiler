@@ -25,14 +25,15 @@ class Compiler implements CompilerInterface
      * Returns a reference in the storage
      * after compiling source
      *
-     * @param Statement\SourceInterface $source
+     * @param  Statement\SourceInterface $source
      * @return Storage\ReferenceInterface
      */
     public function compile(Statement\SourceInterface $source)
     {
         $reference = $this->storage->find($source);
         if ($reference === false
-            || $reference->getChecksum() !== $source->getChecksum()) {
+            || $reference->getChecksum() !== $source->getChecksum()
+        ) {
             $reference = $this->storage->store($source);
         }
 
@@ -40,8 +41,10 @@ class Compiler implements CompilerInterface
     }
 
     /**
-     * @param Storage\ReferenceInterface $reference
-     * @return string
+     * Interprets storage reference
+     *
+     * @param  Storage\ReferenceInterface $reference
+     * @return mixed
      */
     public function interpret(Storage\ReferenceInterface $reference)
     {
@@ -58,6 +61,4 @@ class Compiler implements CompilerInterface
         $this->storage->flush();
         return $this;
     }
-
-
 }

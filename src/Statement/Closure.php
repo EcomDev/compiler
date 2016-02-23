@@ -7,7 +7,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Closure statement
- *
  */
 class Closure implements StatementInterface
 {
@@ -27,8 +26,9 @@ class Closure implements StatementInterface
 
     /**
      * Closure constructor.
+     *
      * @param StatementInterface[] $arguments
-     * @param ContainerInterface $body
+     * @param ContainerInterface   $body
      */
     public function __construct(array $arguments, ContainerInterface $body)
     {
@@ -48,7 +48,7 @@ class Closure implements StatementInterface
     /**
      * Compiles a statement into a closure string
      *
-     * @param ExportInterface $export
+     * @param  ExportInterface $export
      * @return string
      */
     public function compile(ExportInterface $export)
@@ -70,7 +70,7 @@ class Closure implements StatementInterface
     /**
      * Adds a new statement into body of closure
      *
-     * @param StatementInterface $statement
+     * @param  StatementInterface $statement
      * @return $this
      */
     public function add(StatementInterface $statement)

@@ -7,7 +7,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Class instance statement
- *
  */
 class Instance implements StatementInterface
 {
@@ -28,7 +27,7 @@ class Instance implements StatementInterface
     /**
      * Instance statement constructor
      *
-     * @param string $className
+     * @param string                       $className
      * @param StatementInterface[]|mixed[] $arguments
      */
     public function __construct($className, array $arguments = [])
@@ -40,7 +39,7 @@ class Instance implements StatementInterface
     /**
      * Compiles statement
      *
-     * @param ExportInterface $export
+     * @param  ExportInterface $export
      * @return string
      */
     public function compile(ExportInterface $export)

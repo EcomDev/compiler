@@ -6,7 +6,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Statements Container
- *
  */
 class Container implements ContainerInterface
 {
@@ -28,7 +27,7 @@ class Container implements ContainerInterface
     /**
      * Adds statement to container
      *
-     * @param StatementInterface $statement
+     * @param  StatementInterface $statement
      * @return $this
      */
     public function add(StatementInterface $statement)

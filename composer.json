@@ -4,6 +4,9 @@
     "type": "library",
     "require-dev": {
         "phpspec/phpspec": "^2.4",
+        "squizlabs/php_codesniffer": "*",
+        "phpmd/phpmd": "^2.3",
+        "satooshi/php-coveralls": "dev-master",
         "ciaranmcnulty/phpspec-typehintedmethods": "^1.1",
         "mikey179/vfsStream": "^1.6",
         "php": ">= 5.4",

@@ -7,7 +7,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Variable statement
- *
  */
 class Variable implements StatementInterface
 {
@@ -29,7 +28,7 @@ class Variable implements StatementInterface
     /**
      * Compiles variable statement
      *
-     * @param ExportInterface $export
+     * @param  ExportInterface $export
      * @return string
      */
     public function compile(ExportInterface $export)

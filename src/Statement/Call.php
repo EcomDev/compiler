@@ -7,7 +7,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Call statement
- *
  */
 class Call implements StatementInterface
 {
@@ -29,7 +28,7 @@ class Call implements StatementInterface
      * Call statement constructor
      *
      * @param $callee
-     * @param array $arguments
+     * @param array  $arguments
      */
     public function __construct($callee, array $arguments = [])
     {
@@ -40,7 +39,7 @@ class Call implements StatementInterface
     /**
      * Compiles a call statement
      *
-     * @param ExportInterface $export
+     * @param  ExportInterface $export
      * @return string
      */
     public function compile(ExportInterface $export)

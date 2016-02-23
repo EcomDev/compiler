@@ -6,9 +6,8 @@ use EcomDev\Compiler\Statement\SourceInterface;
 
 /**
  * Reference for storage data
- *
  */
-interface ReferenceInterface extends \Serializable
+interface ReferenceInterface
 {
     /**
      * Identifier of the reference

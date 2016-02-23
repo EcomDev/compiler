@@ -7,7 +7,7 @@ class Export implements ExportInterface
     /**
      * Exports php value into var export statement
      *
-     * @param mixed $value
+     * @param  mixed $value
      * @return string
      */
     public function export($value)

@@ -26,7 +26,7 @@ class Even implements DispersionInterface
     /**
      * Calculates dispersion based on every second char
      *
-     * @param string $string
+     * @param  string $string
      * @return string
      */
     public function calculate($string)
@@ -39,11 +39,13 @@ class Even implements DispersionInterface
         while ($total > 0) {
             $total --;
             $offset += 2;
+
             if (!isset($string[$offset])) {
                 $chars .= $string[$offset % $length];
-            } else {
-                $chars .= $string[$offset];
+                continue;
             }
+
+            $chars .= $string[$offset];
         }
 
         return $chars;

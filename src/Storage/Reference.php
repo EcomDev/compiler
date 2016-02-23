@@ -46,11 +46,13 @@ class Reference implements ReferenceInterface
 
     public function serialize()
     {
-        return serialize([
+        return serialize(
+            [
             'id' => $this->id,
             'checksum' => $this->checksum,
             'source' => $this->source
-        ]);
+            ]
+        );
     }
 
     public function unserialize($serialized)

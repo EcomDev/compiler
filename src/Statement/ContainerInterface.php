@@ -6,15 +6,13 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Container interface
- *
  */
-interface ContainerInterface
-    extends \IteratorAggregate
+interface ContainerInterface extends \IteratorAggregate
 {
     /**
      * Adds a new statement to a container
      *
-     * @param StatementInterface $statement
+     * @param  StatementInterface $statement
      * @return $this
      */
     public function add(StatementInterface $statement);

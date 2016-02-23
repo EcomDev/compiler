@@ -1,15 +1,14 @@
 <?php
 
-namespace EcomDev\Compiler\Dispersion;
+namespace EcomDev\Compiler\Dispersion\Crc32;
 
 use EcomDev\Compiler\DispersionInterface;
 
 /**
- * Simple string disperser
- *
+ * Short crc32 string disperser
  *
  */
-class Crc32 implements DispersionInterface
+class Short extends AbstractCrc32
 {
     /**
      * Calculates string dispersion
@@ -19,7 +18,7 @@ class Crc32 implements DispersionInterface
      */
     public function calculate($string)
     {
-        $string = dechex(crc32($string));
-        return $string[0] . $string[3] . $string[6];
+        $string = $this->checksum($string);
+        return $string[0] . $string[7];
     }
 }

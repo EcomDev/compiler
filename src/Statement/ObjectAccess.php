@@ -7,7 +7,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Object access statement
- *
  */
 class ObjectAccess implements StatementInterface
 {
@@ -28,7 +27,7 @@ class ObjectAccess implements StatementInterface
     /**
      * Constructor for object access statement
      *
-     * @param StatementInterface $object
+     * @param StatementInterface        $object
      * @param StatementInterface|string $property
      */
     public function __construct(StatementInterface $object, $property)
@@ -40,7 +39,7 @@ class ObjectAccess implements StatementInterface
     /**
      * Returns compiles object access
      *
-     * @param ExportInterface $export
+     * @param  ExportInterface $export
      * @return string
      */
     public function compile(ExportInterface $export)

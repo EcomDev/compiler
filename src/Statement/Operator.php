@@ -7,7 +7,6 @@ use EcomDev\Compiler\StatementInterface;
 
 /**
  * Operator statement
- *
  */
 class Operator implements StatementInterface
 {
@@ -149,14 +148,14 @@ class Operator implements StatementInterface
      *
      * @param StatementInterface $left
      * @param StatementInterface $right
-     * @param string $operator
+     * @param string             $operator
      */
     public function __construct(
         StatementInterface $left,
         StatementInterface $right,
         $operator = self::EQUAL
-    )
-    {
+    ) {
+    
         $this->left = $left;
         $this->right = $right;
 
@@ -172,7 +171,7 @@ class Operator implements StatementInterface
     /**
      * Compiles an assignment statement
      *
-     * @param ExportInterface $export
+     * @param  ExportInterface $export
      * @return string
      */
     public function compile(ExportInterface $export)
