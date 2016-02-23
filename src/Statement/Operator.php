@@ -171,7 +171,8 @@ class Operator implements StatementInterface
     /**
      * Compiles an assignment statement
      *
-     * @param  ExportInterface $export
+     * @param ExportInterface $export
+     *
      * @return string
      */
     public function compile(ExportInterface $export)

@@ -2,21 +2,28 @@
 
 namespace EcomDev\Compiler\Storage;
 
+use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\Statement\SourceInterface;
 
 class Reference implements ReferenceInterface
 {
     /**
+     * Identifier of the reference
+     *
      * @var string
      */
     private $id;
 
     /**
+     * Checksum of the checksum
+     *
      * @var string
      */
     private $checksum;
 
     /**
+     * Source instance
+     *
      * @var SourceInterface
      */
     private $source;
@@ -29,37 +36,43 @@ class Reference implements ReferenceInterface
         return $this;
     }
 
+    /**
+     * Returns identifier
+     *
+     * @return string
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Returns checksum
+     *
+     * @return string
+     */
     public function getChecksum()
     {
         return $this->checksum;
     }
 
+    /**
+     * Returns source instance
+     *
+     * @return SourceInterface
+     */
     public function getSource()
     {
         return $this->source;
     }
 
-    public function serialize()
+    /**
+     * Returns an exportable PHP code for a reference
+     *
+     * @return Instance
+     */
+    public function export()
     {
-        return serialize(
-            [
-            'id' => $this->id,
-            'checksum' => $this->checksum,
-            'source' => $this->source
-            ]
-        );
-    }
-
-    public function unserialize($serialized)
-    {
-        $data = unserialize($serialized);
-        $this->id = $data['id'];
-        $this->checksum = $data['checksum'];
-        $this->source = $data['source'];
+        return new Instance(get_class($this), [$this->id, $this->checksum, $this->source]);
     }
 }

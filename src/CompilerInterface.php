@@ -7,7 +7,8 @@ interface CompilerInterface
     /**
      * Returns a reference in the storage
      *
-     * @param  Statement\SourceInterface $source
+     * @param Statement\SourceInterface $source
+     *
      * @return Storage\ReferenceInterface
      */
     public function compile(Statement\SourceInterface $source);
@@ -16,7 +17,8 @@ interface CompilerInterface
     /**
      * Interprets storage reference
      *
-     * @param  Storage\ReferenceInterface $reference
+     * @param Storage\ReferenceInterface $reference
+     *
      * @return mixed
      */
     public function interpret(Storage\ReferenceInterface $reference);

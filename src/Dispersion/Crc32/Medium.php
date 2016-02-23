@@ -11,6 +11,7 @@ class Medium extends AbstractCrc32
      * Calculates string dispersion
      *
      * @param string $string
+     *
      * @return string
      */
     public function calculate($string)

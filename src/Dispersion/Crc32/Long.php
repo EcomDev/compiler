@@ -4,8 +4,6 @@ namespace EcomDev\Compiler\Dispersion\Crc32;
 
 /**
  * Simple string disperser
- *
- *
  */
 class Long extends AbstractCrc32
 {
@@ -13,6 +11,7 @@ class Long extends AbstractCrc32
      * Calculates string dispersion
      *
      * @param string $string
+     *
      * @return string
      */
     public function calculate($string)

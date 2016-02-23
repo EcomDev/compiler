@@ -31,7 +31,8 @@ class ArrayList implements StatementInterface
     /**
      * Adds an item to list
      *
-     * @param  mixed $item
+     * @param mixed $item
+     *
      * @return $this
      */
     public function add($item)
@@ -44,7 +45,8 @@ class ArrayList implements StatementInterface
     /**
      * Exports array list
      *
-     * @param  ExportInterface $export
+     * @param ExportInterface $export
+     *
      * @return string
      */
     public function compile(ExportInterface $export)

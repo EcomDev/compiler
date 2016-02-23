@@ -2,6 +2,7 @@
 
 namespace EcomDev\Compiler\Storage\Driver;
 
+use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\Storage\ReferenceInterface;
 
 class Index implements IndexInterface
@@ -11,7 +12,17 @@ class Index implements IndexInterface
      *
      * @var ReferenceInterface[]
      */
-    private $data = [];
+    private $data;
+
+    /**
+     * Constructs an index with data
+     *
+     * @param ReferenceInterface[] $data
+     */
+    public function __construct(array $data = [])
+    {
+        $this->data = $data;
+    }
 
     public function add(ReferenceInterface $reference)
     {
@@ -35,14 +46,9 @@ class Index implements IndexInterface
         return $this->data[$id];
     }
 
-    public function serialize()
+    public function export()
     {
-        // TODO: Implement serialize() method.
-    }
-
-    public function unserialize($serialized)
-    {
-        // TODO: Implement unserialize() method.
+        return new Instance(get_class($this), [$this->data]);
     }
 
     public function count()

@@ -11,6 +11,8 @@ use EcomDev\Compiler\StatementInterface;
 class Variable implements StatementInterface
 {
     /**
+     * Name of the variable or its expression
+     *
      * @var StatementInterface|string
      */
     private $name;
@@ -28,7 +30,8 @@ class Variable implements StatementInterface
     /**
      * Compiles variable statement
      *
-     * @param  ExportInterface $export
+     * @param ExportInterface $export
+     *
      * @return string
      */
     public function compile(ExportInterface $export)

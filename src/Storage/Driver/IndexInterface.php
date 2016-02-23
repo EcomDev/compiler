@@ -2,14 +2,16 @@
 
 namespace EcomDev\Compiler\Storage\Driver;
 
+use EcomDev\Compiler\ExportableInterface;
 use EcomDev\Compiler\Storage\ReferenceInterface;
 
-interface IndexInterface extends \Serializable, \Countable
+interface IndexInterface extends ExportableInterface, \Countable
 {
     /**
      * Adds reference by identifier
      *
-     * @param  ReferenceInterface $interface
+     * @param ReferenceInterface $interface
+     *
      * @return $this
      */
     public function add(ReferenceInterface $interface);
@@ -17,7 +19,8 @@ interface IndexInterface extends \Serializable, \Countable
     /**
      * Checks if reference with such id exists in index
      *
-     * @param  $id
+     * @param string $id
+     *
      * @return boolean
      */
     public function has($id);
@@ -25,7 +28,8 @@ interface IndexInterface extends \Serializable, \Countable
     /**
      * Returns a reference by identifier
      *
-     * @param  $id
+     * @param string $id
+     *
      * @return ReferenceInterface
      */
     public function get($id);

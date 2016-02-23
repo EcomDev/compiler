@@ -1,4 +1,4 @@
-<?php
+.<?php
 
 namespace EcomDev\Compiler\Statement;
 
@@ -39,7 +39,8 @@ class Call implements StatementInterface
     /**
      * Compiles a call statement
      *
-     * @param  ExportInterface $export
+     * @param ExportInterface $export
+     *
      * @return string
      */
     public function compile(ExportInterface $export)

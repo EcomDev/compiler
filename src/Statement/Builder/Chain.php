@@ -39,7 +39,8 @@ class Chain
     /**
      * Creates property chain item
      *
-     * @param  string|StatementInterface $name
+     * @param string|StatementInterface $name
+     *
      * @return $this
      */
     public function property($name)
@@ -51,8 +52,9 @@ class Chain
     /**
      * Creates method call chain item
      *
-     * @param  string|StatementInterface $name
-     * @param  array                     $arguments
+     * @param string|StatementInterface $name
+     * @param array                     $arguments
+     *
      * @return $this
      */
     public function method($name, array $arguments = [])
@@ -65,7 +67,8 @@ class Chain
     /**
      * Creates array chain item
      *
-     * @param  string|StatementInterface $key
+     * @param string|StatementInterface $key
+     *
      * @return $this
      */
     public function assoc($key)

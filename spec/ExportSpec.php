@@ -2,7 +2,11 @@
 
 namespace spec\EcomDev\Compiler;
 
+use EcomDev\Compiler\ExportableInterface;
+use EcomDev\Compiler\Statement\Source\StaticData;
 use EcomDev\Compiler\StatementInterface;
+use EcomDev\Compiler\Storage\Reference;
+use PDepend\Source\AST\State;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -34,9 +38,25 @@ class ExportSpec extends ObjectBehavior
         $this->export($statement)->shouldEqual('new PHP\\Class()');
     }
 
+    function it_should_be_possible_to_export_exportable_ojects(ExportableInterface $exportable)
+    {
+        $exportable->export()->willReturn('true');
+        $this->export($exportable)->shouldEqual("'true'");
+    }
+
+    function it_should_be_possible_to_export_statement_returned_by_exportoable_object(
+        ExportableInterface $exportable, StatementInterface $statement
+    )
+    {
+        $exportable->export()->willReturn($statement);
+        $statement->compile($this)->willReturn('new ClassStatement()');
+        $this->export($exportable)->shouldEqual('new ClassStatement()');
+    }
+
     function it_should_rise_an_exception_if_object_is_passed_that_does_not_implement_statement_interface()
     {
-        $message = 'stdClass does not implement EcomDev\Compiler\StatementInterface';
+        $message = 'stdClass does not implement'
+                 . ' EcomDev\Compiler\StatementInterface or EcomDev\Compiler\ExportableInterface';
         $this->shouldThrow(new \InvalidArgumentException($message))->during('export', [new \stdClass()]);
     }
 }

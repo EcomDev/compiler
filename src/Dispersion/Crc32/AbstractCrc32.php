@@ -11,6 +11,7 @@ abstract class AbstractCrc32 implements DispersionInterface
      * Returns checksum value
      *
      * @param string $value
+     *
      * @return string
      */
     protected function checksum($value)

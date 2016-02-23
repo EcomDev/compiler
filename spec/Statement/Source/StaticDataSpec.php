@@ -2,7 +2,9 @@
 
 namespace spec\EcomDev\Compiler\Statement\Source;
 
+use EcomDev\Compiler\Statement\Call;
 use EcomDev\Compiler\Statement\Container;
+use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\Statement\Scalar;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -38,29 +40,11 @@ class StaticDataSpec extends ObjectBehavior
 
     function it_serializes_only_identifier_checksum_and_container()
     {
-        $this->serialize()->shouldReturn(serialize([
-            'id' => 'identifier',
-            'checksum' => 'checksum',
-            'container' => $this->container
-        ]));
-    }
-
-    function it_unserializes_identifier_checksum_and_container()
-    {
-        $this->container->add(new Scalar(true));
-
-        $this->unserialize(serialize([
-            'id' => 'identifier2',
-            'checksum' => 'checksum2',
-            'container' => $this->container
-        ]));
-
-        $this->getId()->shouldReturn('identifier2');
-        $this->getChecksum()->shouldReturn('checksum2');
-        $container = $this->load();
-        $container->shouldImplement('EcomDev\Compiler\Statement\Container');
-        $iterator = $container->getIterator();
-        $iterator->rewind();
-        $iterator->current()->shouldBeLike(new Scalar(true));
+        $this->export()->shouldBeLike(
+            new Instance(
+                'EcomDev\Compiler\Statement\Source\StaticData',
+                ['identifier', 'checksum', new Call('unserialize', [serialize($this->container)])]
+            )
+        );
     }
 }

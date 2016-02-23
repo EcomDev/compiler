@@ -10,6 +10,8 @@ use EcomDev\Compiler\StatementInterface;
 class Container implements ContainerInterface
 {
     /**
+     * Container statements
+     *
      * @var StatementInterface[]
      */
     private $statements;
@@ -27,7 +29,8 @@ class Container implements ContainerInterface
     /**
      * Adds statement to container
      *
-     * @param  StatementInterface $statement
+     * @param StatementInterface $statement
+     *
      * @return $this
      */
     public function add(StatementInterface $statement)

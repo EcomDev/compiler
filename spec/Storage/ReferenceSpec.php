@@ -3,11 +3,13 @@
 namespace spec\EcomDev\Compiler\Storage;
 
 use EcomDev\Compiler\Statement\Container;
+use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\Statement\Scalar;
 use EcomDev\Compiler\Statement\Source\StaticData;
 use EcomDev\Compiler\Statement\SourceInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Prophecy\Prophecy\ObjectProphecy;
 
 class ReferenceSpec extends ObjectBehavior
 {
@@ -31,32 +33,14 @@ class ReferenceSpec extends ObjectBehavior
         $this->getSource()->shouldReturn($source);
     }
 
-    function it_should_return_serialized_reference_with_source()
+    function it_should_export(SourceInterface $source)
     {
-        $source = new StaticData('identifier', 'checksum', new Container());
-
-        $this->beConstructedWith('identifier', 'checksum', $source);
-
-        $this->serialize()->shouldReturn(serialize([
-            'id' => 'identifier',
-            'checksum' => 'checksum',
-            'source' => $source
-        ]));
+        $this->export()->shouldBeLike(
+            new Instance(
+                'EcomDev\Compiler\Storage\Reference',
+                ['identifier', 'checksum', $source->getWrappedObject()]
+            )
+        );
     }
 
-    function it_should_process_serialized_content()
-    {
-        $container = new Container([new Scalar(true)]);
-        $source = new StaticData('identifier2', 'checksum2', $container);
-
-        $this->unserialize(serialize([
-            'id' => 'identifier2',
-            'checksum' => 'checksum2',
-            'source' => $source
-        ]));
-
-        $this->getId()->shouldReturn('identifier2');
-        $this->getChecksum()->shouldReturn('checksum2');
-        $this->getSource()->shouldBeLike($source);
-    }
 }

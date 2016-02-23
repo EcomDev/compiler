@@ -7,11 +7,16 @@ class Export implements ExportInterface
     /**
      * Exports php value into var export statement
      *
-     * @param  mixed $value
+     * @param mixed $value
+     *
      * @return string
      */
     public function export($value)
     {
+        if ($value instanceof ExportableInterface) {
+            $value = $value->export();
+        }
+
         if ($value instanceof StatementInterface) {
             return $value->compile($this);
         }
@@ -19,9 +24,10 @@ class Export implements ExportInterface
         if (is_object($value)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    '%s does not implement %s',
+                    '%s does not implement %s or %s',
                     get_class($value),
-                    'EcomDev\Compiler\StatementInterface'
+                    'EcomDev\Compiler\StatementInterface',
+                    'EcomDev\Compiler\ExportableInterface'
                 )
             );
         }

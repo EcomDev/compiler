@@ -12,7 +12,8 @@ interface DispersionInterface
     /**
      * Creates dispersion of the string
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public function calculate($string);

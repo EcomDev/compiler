@@ -25,7 +25,8 @@ class Compiler implements CompilerInterface
      * Returns a reference in the storage
      * after compiling source
      *
-     * @param  Statement\SourceInterface $source
+     * @param Statement\SourceInterface $source
+     *
      * @return Storage\ReferenceInterface
      */
     public function compile(Statement\SourceInterface $source)
@@ -43,7 +44,8 @@ class Compiler implements CompilerInterface
     /**
      * Interprets storage reference
      *
-     * @param  Storage\ReferenceInterface $reference
+     * @param Storage\ReferenceInterface $reference
+     *
      * @return mixed
      */
     public function interpret(Storage\ReferenceInterface $reference)

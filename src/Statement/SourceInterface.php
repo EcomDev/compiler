@@ -2,10 +2,12 @@
 
 namespace EcomDev\Compiler\Statement;
 
+use EcomDev\Compiler\ExportableInterface;
+
 /**
  * Source interface
  */
-interface SourceInterface extends \Serializable
+interface SourceInterface extends ExportableInterface
 {
     /**
      * Returns a statements from source

@@ -39,7 +39,8 @@ class ObjectAccess implements StatementInterface
     /**
      * Returns compiles object access
      *
-     * @param  ExportInterface $export
+     * @param ExportInterface $export
+     *
      * @return string
      */
     public function compile(ExportInterface $export)

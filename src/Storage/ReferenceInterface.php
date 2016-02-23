@@ -2,12 +2,13 @@
 
 namespace EcomDev\Compiler\Storage;
 
+use EcomDev\Compiler\ExportableInterface;
 use EcomDev\Compiler\Statement\SourceInterface;
 
 /**
  * Reference for storage data
  */
-interface ReferenceInterface
+interface ReferenceInterface extends ExportableInterface
 {
     /**
      * Identifier of the reference

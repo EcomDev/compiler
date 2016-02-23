@@ -6,7 +6,6 @@ use EcomDev\Compiler\DispersionInterface;
 
 /**
  * Short crc32 string disperser
- *
  */
 class Short extends AbstractCrc32
 {
@@ -14,6 +13,7 @@ class Short extends AbstractCrc32
      * Calculates string dispersion
      *
      * @param string $string
+     *
      * @return string
      */
     public function calculate($string)

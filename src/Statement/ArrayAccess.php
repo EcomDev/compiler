@@ -39,7 +39,8 @@ class ArrayAccess implements StatementInterface
     /**
      * Compiles a statement
      *
-     * @param  ExportInterface $export
+     * @param ExportInterface $export
+     *
      * @return string
      */
     public function compile(ExportInterface $export)

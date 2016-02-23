@@ -12,7 +12,8 @@ interface DriverInterface
     /**
      * Stores reference
      *
-     * @param  ReferenceInterface $reference
+     * @param ReferenceInterface $reference
+     *
      * @return $this
      */
     public function store(ReferenceInterface $reference);
@@ -20,7 +21,8 @@ interface DriverInterface
     /**
      * Find reference within a source
      *
-     * @param  SourceInterface $reference
+     * @param SourceInterface $reference
+     *
      * @return ReferenceInterface|bool
      */
     public function find(SourceInterface $reference);
@@ -28,7 +30,8 @@ interface DriverInterface
     /**
      * Interprets php code from reference
      *
-     * @param  ReferenceInterface $reference
+     * @param ReferenceInterface $reference
+     *
      * @return mixed
      */
     public function interpret(ReferenceInterface $reference);
@@ -36,7 +39,8 @@ interface DriverInterface
     /**
      * Returns a stored php code for reference
      *
-     * @param  ReferenceInterface $reference
+     * @param ReferenceInterface $reference
+     *
      * @return string
      */
     public function get(ReferenceInterface $reference);

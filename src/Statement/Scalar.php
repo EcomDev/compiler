@@ -32,7 +32,8 @@ class Scalar implements StatementInterface
     /**
      * Compiles normal scalar value
      *
-     * @param  ExportInterface $export
+     * @param ExportInterface $export
+     *
      * @return string
      */
     public function compile(ExportInterface $export)

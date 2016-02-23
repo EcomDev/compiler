@@ -12,7 +12,10 @@ use EcomDev\Compiler\Storage\ReferenceInterface;
 interface StorageInterface
 {
     /**
+     * Stores reference in the storage
+     *
      * @param Statement\SourceInterface $source
+     *
      * @return ReferenceInterface
      */
     public function store(Statement\SourceInterface $source);
@@ -20,7 +23,8 @@ interface StorageInterface
     /**
      * Tries to find reference within multiple storage
      *
-     * @param  Statement\SourceInterface $source
+     * @param Statement\SourceInterface $source
+     *
      * @return bool|ReferenceInterface
      */
     public function find(Statement\SourceInterface $source);
@@ -28,7 +32,8 @@ interface StorageInterface
     /**
      * Tries to interpret the existing reference
      *
-     * @param  ReferenceInterface $reference
+     * @param ReferenceInterface $reference
+     *
      * @return string
      */
     public function interpret(ReferenceInterface $reference);

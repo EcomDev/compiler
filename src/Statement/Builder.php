@@ -13,7 +13,8 @@ class Builder
     /**
      * Returns a scalar statement
      *
-     * @param  mixed $value
+     * @param mixed $value
+     *
      * @return Scalar
      */
     public function scalar($value)
@@ -24,8 +25,9 @@ class Builder
     /**
      * Returns a new call statement
      *
-     * @param  string                       $call
-     * @param  mixed[]|StatementInterface[] $arguments
+     * @param string                       $call
+     * @param mixed[]|StatementInterface[] $arguments
+     *
      * @return Call
      */
     public function call($call, array $arguments = [])
@@ -36,9 +38,10 @@ class Builder
     /**
      * Returns a new operator statement
      *
-     * @param  mixed|StatementInterface $left
-     * @param  mixed|StatementInterface $right
-     * @param  string                   $operator
+     * @param mixed|StatementInterface $left
+     * @param mixed|StatementInterface $right
+     * @param string                   $operator
+     *
      * @return Operator
      */
     public function operator($left, $right, $operator)
@@ -57,8 +60,9 @@ class Builder
     /**
      * Returns a new assign statement
      *
-     * @param  StatementInterface       $left
-     * @param  StatementInterface|mixed $right
+     * @param StatementInterface       $left
+     * @param StatementInterface|mixed $right
+     *
      * @return Operator
      */
     public function assign(StatementInterface $left, $right)
@@ -69,7 +73,8 @@ class Builder
     /**
      * Returns a new container with list of statements
      *
-     * @param  StatementInterface[] $statements
+     * @param StatementInterface[] $statements
+     *
      * @return Container
      */
     public function container(array $statements = [])
@@ -80,7 +85,8 @@ class Builder
     /**
      * Creates a new array list statement
      *
-     * @param  array $list
+     * @param array $list
+     *
      * @return ArrayList
      */
     public function arrayList(array $list = [])
@@ -91,8 +97,9 @@ class Builder
     /**
      * Returns array access instance
      *
-     * @param  StatementInterface $statement
-     * @param  mixed              $value
+     * @param StatementInterface $statement
+     * @param mixed              $value
+     *
      * @return ArrayAccess
      */
     public function arrayAccess(StatementInterface $statement, $value)
@@ -103,7 +110,8 @@ class Builder
     /**
      * Returns a variable statement
      *
-     * @param  string|StatementInterface $name
+     * @param string|StatementInterface $name
+     *
      * @return Variable
      */
     public function variable($name)
@@ -114,8 +122,9 @@ class Builder
     /**
      * Returns object access statement
      *
-     * @param  StatementInterface        $object
-     * @param  string|StatementInterface $property
+     * @param StatementInterface        $object
+     * @param string|StatementInterface $property
+     *
      * @return ObjectAccess
      */
     public function objectAccess(StatementInterface $object, $property)
@@ -126,8 +135,9 @@ class Builder
     /**
      * Returns closure statement
      *
-     * @param  array          $arguments
-     * @param  Container|null $body
+     * @param array          $arguments
+     * @param Container|null $body
+     *
      * @return Closure
      */
     public function closure(array $arguments = [], Container $body = null)
@@ -142,8 +152,9 @@ class Builder
     /**
      * Return instance statement
      *
-     * @param  string                       $className
-     * @param  mixed[]|StatementInterface[] $arguments
+     * @param string                       $className
+     * @param mixed[]|StatementInterface[] $arguments
+     *
      * @return Instance
      */
     public function instance($className, array $arguments = [])
@@ -154,7 +165,8 @@ class Builder
     /**
      * Returns a new chain builder instance
      *
-     * @param  StatementInterface $start
+     * @param StatementInterface $start
+     *
      * @return Builder\Chain
      */
     public function chain(StatementInterface $start)

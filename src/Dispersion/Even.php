@@ -26,7 +26,8 @@ class Even implements DispersionInterface
     /**
      * Calculates dispersion based on every second char
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public function calculate($string)

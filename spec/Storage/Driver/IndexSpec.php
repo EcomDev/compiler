@@ -2,6 +2,7 @@
 
 namespace spec\EcomDev\Compiler\Storage\Driver;
 
+use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\Storage\ReferenceInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -44,5 +45,38 @@ class IndexSpec extends ObjectBehavior
         $this->count()->shouldReturn(3);
     }
 
+    public function it_should_be_possible_to_contruct_it_with_references_as_arguments(
+        ReferenceInterface $one,
+        ReferenceInterface $two,
+        ReferenceInterface $three
+    )
+    {
+        $one->getId()->shouldNotBeCalled();
+        $two->getId()->shouldNotBeCalled();
+        $three->getId()->shouldNotBeCalled();
 
+        $this->beConstructedWith(['one' => $one, 'two' => $two, 'three' => $three]);
+
+        $this->get('one')->shouldReturn($one);
+        $this->get('two')->shouldReturn($two);
+        $this->get('three')->shouldReturn($three);
+    }
+
+    public function it_return_exportable_instance(
+        ReferenceInterface $one,
+        ReferenceInterface $two,
+        ReferenceInterface $three
+    )
+    {
+        $this->beConstructedWith(['one' => $one, 'two' => $two, 'three' => $three]);
+        $this->export()->shouldBeLike(
+            new Instance('EcomDev\Compiler\Storage\Driver\Index', [
+                [
+                    'one' => $one->getWrappedObject(),
+                    'two' => $two->getWrappedObject(),
+                    'three' => $three->getWrappedObject()
+                ]
+            ])
+        );
+    }
 }
