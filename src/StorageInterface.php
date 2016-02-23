@@ -2,8 +2,6 @@
 
 namespace EcomDev\Compiler;
 
-use EcomDev\Compiler\Storage\ReferenceInterface;
-
 /**
  * Storage for sources
  *
@@ -16,7 +14,7 @@ interface StorageInterface
      *
      * @param Statement\SourceInterface $source
      *
-     * @return ReferenceInterface
+     * @return Storage\ReferenceInterface
      */
     public function store(Statement\SourceInterface $source);
 
@@ -25,18 +23,18 @@ interface StorageInterface
      *
      * @param Statement\SourceInterface $source
      *
-     * @return bool|ReferenceInterface
+     * @return bool|Storage\ReferenceInterface
      */
     public function find(Statement\SourceInterface $source);
 
     /**
      * Tries to interpret the existing reference
      *
-     * @param ReferenceInterface $reference
+     * @param Storage\ReferenceInterface $reference
      *
      * @return string
      */
-    public function interpret(ReferenceInterface $reference);
+    public function interpret(Storage\ReferenceInterface $reference);
 
     /**
      * Flushes the storage driver

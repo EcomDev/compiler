@@ -12,20 +12,20 @@ interface DriverInterface
     /**
      * Stores reference
      *
-     * @param ReferenceInterface $reference
+     * @param SourceInterface $source
      *
      * @return $this
      */
-    public function store(ReferenceInterface $reference);
+    public function store(SourceInterface $source);
 
     /**
      * Find reference within a source
      *
-     * @param SourceInterface $reference
+     * @param SourceInterface $source
      *
      * @return ReferenceInterface|bool
      */
-    public function find(SourceInterface $reference);
+    public function find(SourceInterface $source);
 
     /**
      * Interprets php code from reference
