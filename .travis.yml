@@ -17,7 +17,7 @@ before_script:
   - composer install
   - mkdir build/
 
-script: 
+script:
   - bin/phpcs
   - bin/phpspec run --config phpspec.travis.yml
 
