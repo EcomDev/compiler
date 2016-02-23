@@ -10,7 +10,8 @@ php:
 before_script:
   - composer self-update
   - composer install
-
+  - mkdir build/
+  
 script: 
   - bin/phpcs
   - bin/phpspec run --config phpspec.travis.yml
