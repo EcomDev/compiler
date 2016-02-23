@@ -2,6 +2,7 @@
 
 namespace spec\EcomDev\Compiler\Storage\Driver;
 
+use EcomDev\Compiler\Storage\Driver\IndexInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -14,5 +15,26 @@ class IndexFactorySpec extends ObjectBehavior
         $indexOne->shouldImplement('EcomDev\Compiler\Storage\Driver\Index');
         $indexTwo->shouldImplement('EcomDev\Compiler\Storage\Driver\Index');
         $indexOne->shouldNotEqual($indexTwo);
+    }
+
+    function it_should_be_possible_to_specify_custom_class_for_factory(IndexInterface $index)
+    {
+        $indexClass = get_class($index->getWrappedObject());
+        $this->beConstructedWith($indexClass);
+
+        $this->create()->shouldImplement($indexClass);
+    }
+
+    function it_should_throw_an_exception_if_class_does_not_implement_index_interface()
+    {
+        $this->beConstructedWith('stdClass');
+        $this
+            ->shouldThrow(
+                new \InvalidArgumentException(
+                    'stdClass does not implement EcomDev\Compiler\Storage\Driver\IndexInterface'
+                )
+            )
+            ->duringInstantiation();
+        ;
     }
 }
