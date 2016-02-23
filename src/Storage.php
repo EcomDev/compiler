@@ -2,7 +2,6 @@
 
 namespace EcomDev\Compiler;
 
-
 class Storage implements StorageInterface
 {
     /**
@@ -14,7 +13,6 @@ class Storage implements StorageInterface
 
     /**
      * Initializes storage with supplied driver
-     *
      */
     public function __construct(Storage\DriverInterface $driver)
     {
