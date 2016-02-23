@@ -13,7 +13,7 @@ before_script:
 
 script: 
   - bin/phpcs
-  - bin/phpspec --config phpspec.travis.yml
+  - bin/phpspec rungit  --config phpspec.travis.yml
 
 after_script:
   - bin/coveralls -v
