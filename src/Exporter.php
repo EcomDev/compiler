@@ -17,6 +17,11 @@ class Exporter implements ExporterInterface
             return $value->compile($this);
         }
 
+        // PHP always exports it as NULL
+        if ($value === null) {
+            return 'null';
+        }
+
         if (is_object($value)) {
             throw new \InvalidArgumentException(
                 sprintf(

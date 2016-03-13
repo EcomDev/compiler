@@ -3,12 +3,43 @@
 namespace EcomDev\Compiler;
 
 use EcomDev\Compiler\Statement\Instance;
+use PDepend\Source\Builder\Builder;
+use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Default object builder implementation for storage load/save process
  */
 class ObjectBuilder implements ObjectBuilderInterface
 {
+    /**
+     * Shared objects
+     *
+     * @var mixed[]
+     */
+    private $shared = [];
+
+    /**
+     * Relation of shared object to spl hash
+     *
+     * @var string[]
+     */
+    private $sharedIdToSplHash;
+
+    /**
+     * Statements builder
+     *
+     * @var Builder
+     */
+    private $builder;
+
+    /**
+     * Accepts builder as statement factory
+     */
+    public function __construct(Statement\Builder $builder)
+    {
+        $this->builder = $builder;
+    }
+
     /**
      * Builds statement based on exportable object
      *
@@ -44,6 +75,13 @@ class ObjectBuilder implements ObjectBuilderInterface
     protected function resolveArray(array $array)
     {
         foreach ($array as $index => $item) {
+            if ($this->sharedIdToSplHash
+                && is_object($item)
+                && isset($this->sharedIdToSplHash[spl_object_hash($item)])) {
+                $id = $this->sharedIdToSplHash[spl_object_hash($item)];
+                $array[$index] = $this->builder->this()->shared($id)->end();
+            }
+
             if ($item instanceof ExportableInterface) {
                 $array[$index] = $this->build($item);
             }
@@ -54,5 +92,29 @@ class ObjectBuilder implements ObjectBuilderInterface
         }
 
         return $array;
+    }
+
+    /**
+     * @param string $id
+     * @param mixed $object
+     */
+    public function share($id, $object)
+    {
+        $this->shared[$id] = $object;
+        $this->sharedIdToSplHash[spl_object_hash($object)] = $id;
+        return $this;
+    }
+
+    public function shared($id)
+    {
+        if (!isset($this->shared[$id])) {
+            throw new \InvalidArgumentException(sprintf(
+                'Unknown shared object "%1$s" requested. '
+                . 'Consider calling share("%1$s", $object) before interpreting compiled code.',
+                $id
+            ));
+        }
+
+        return $this->shared[$id];
     }
 }

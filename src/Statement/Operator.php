@@ -123,6 +123,15 @@ class Operator implements StatementInterface
     private $operator;
 
     /**
+     * Precedence templates
+     *
+     * @var array
+     */
+    private $precedenceTemplate = [
+        '||' => '(%s)'
+    ];
+
+    /**
      * Available operator types
      *
      * @var string[]
@@ -177,8 +186,19 @@ class Operator implements StatementInterface
      */
     public function compile(ExporterInterface $export)
     {
+        $template = '%s %s %s';
+
+        if (($this->left instanceof Operator || $this->right instanceof Operator)
+            && isset($this->precedenceTemplate[$this->operator])) {
+            $template = sprintf(
+                '%s %%s %s',
+                ($this->left instanceof Operator ? $this->precedenceTemplate[$this->operator] : '%s'),
+                ($this->right instanceof Operator ? $this->precedenceTemplate[$this->operator] : '%s')
+            );
+        }
+
         return sprintf(
-            '%s %s %s',
+            $template,
             $this->left->compile($export),
             $this->operator,
             $this->right->compile($export)

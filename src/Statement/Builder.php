@@ -2,7 +2,9 @@
 
 namespace EcomDev\Compiler\Statement;
 
+use EcomDev\Compiler\Statement\Builder\Chain;
 use EcomDev\Compiler\StatementInterface;
+use PDepend\Source\AST\State;
 
 /**
  * Statement builder class
@@ -172,5 +174,62 @@ class Builder
     public function chain(StatementInterface $start)
     {
         return new Builder\Chain($start, $this);
+    }
+
+    /**
+     * Creates and operator statement on all passed arguments
+     *
+     * @return Operator
+     */
+    public function andX()
+    {
+        return $this->chainMultiOperator(func_get_args(), Operator::BOOL_AND);
+    }
+
+    /**
+     * Creates or operator statement on all passed arguments
+     *
+     * @return Operator
+     */
+    public function orX()
+    {
+        return $this->chainMultiOperator(func_get_args(), Operator::BOOL_OR);
+    }
+
+    /**
+     * Chains multiple operands on operator together
+     *
+     * @param array $operands
+     * @param $operator
+     * @return Operator
+     */
+    private function chainMultiOperator(array $operands, $operator)
+    {
+        $operands = array_reverse($operands);
+        foreach ($operands as $index => $operand) {
+            if (!$operand instanceof StatementInterface) {
+                $operands[$index] = $this->scalar($operand);
+            }
+        }
+
+        $right = array_shift($operands);
+
+        while (count($operands) > 1) {
+            $left = array_shift($operands);
+            $right = $this->operator($left, $right, $operator);
+        }
+
+        $left = array_shift($operands);
+        return $this->operator($left, $right, $operator);
+    }
+
+    /**
+     * This chain creation
+     *
+     * @return Chain
+     */
+    public function this()
+    {
+        return $this->chain($this->variable('this'));
     }
 }

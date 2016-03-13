@@ -62,6 +62,54 @@ class BuilderSpec extends ObjectBehavior
         $statement->compile($export)->shouldReturn("\$foo = \$bar");
     }
 
+    function it_creates_and_operator()
+    {
+        $export = new Exporter();
+        $statement = $this->andX(true, false);
+        $statement->compile($export)->shouldReturn("true && false");
+    }
+
+
+    function it_creates_and_with_statements(StatementInterface $left, StatementInterface $right)
+    {
+        $export = new Exporter();
+        $left->compile($export)->willReturn('$var1');
+        $right->compile($export)->willReturn('$var2');
+        $statement = $this->andX($left, $right);
+        $statement->compile($export)->shouldReturn('$var1 && $var2');
+    }
+
+    function it_creates_multiple_and_conditions()
+    {
+        $export = new Exporter();
+        $statement = $this->andX(1, 2, 3, 4, 5);
+        $statement->compile($export)->shouldReturn('1 && 2 && 3 && 4 && 5');
+    }
+
+    function it_creates_or_operator()
+    {
+        $export = new Exporter();
+        $statement = $this->orX(true, false);
+        $statement->compile($export)->shouldReturn("true || false");
+    }
+
+
+    function it_creates_or_with_statements(StatementInterface $left, StatementInterface $right)
+    {
+        $export = new Exporter();
+        $left->compile($export)->willReturn('$var1');
+        $right->compile($export)->willReturn('$var2');
+        $statement = $this->orX($left, $right);
+        $statement->compile($export)->shouldReturn('$var1 || $var2');
+    }
+
+    function it_creates_multiple_or_conditions()
+    {
+        $export = new Exporter();
+        $statement = $this->orX(1, 2, 3, 4, 5);
+        $statement->compile($export)->shouldReturn('1 || (2 || (3 || (4 || 5)))');
+    }
+
     function it_creates_contianer()
     {
         $container = $this->container();
@@ -162,6 +210,14 @@ class BuilderSpec extends ObjectBehavior
         $chain->end()->shouldReturn($body);
     }
 
+    function it_creates_new_chain_builder_with_this_as_a_chain_starting_point()
+    {
+        $export = new Exporter();
+        $chain = $this->this();
+        $chain->shouldImplement('EcomDev\Compiler\Statement\Builder\Chain');
+        $chain->callSomeMethod();
+        $chain->end()->compile($export)->shouldReturn('$this->callSomeMethod()');
+    }
 
     public function getMatchers()
     {

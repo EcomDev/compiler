@@ -6,6 +6,7 @@ use EcomDev\Compiler\DispersionInterface;
 use EcomDev\Compiler\Exporter;
 use EcomDev\Compiler\ObjectBuilder;
 use EcomDev\Compiler\ObjectBuilderInterface;
+use EcomDev\Compiler\Statement\Builder;
 use EcomDev\Compiler\Statement\Container;
 use EcomDev\Compiler\Statement\ReturnStatement;
 use EcomDev\Compiler\Statement\Scalar;
@@ -71,7 +72,7 @@ class FileSpec extends ObjectBehavior
         $this->referenceFactory = new ReferenceFactory();
         $this->dispersion = $dispersion;
         $this->export = new Exporter();
-        $this->objectBuilder = new ObjectBuilder();
+        $this->objectBuilder = new ObjectBuilder(new Builder());
 
         $this->vfs = $this->setupFileSystem();
 

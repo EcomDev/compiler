@@ -71,8 +71,8 @@ class ChainSpec extends ObjectBehavior
     {
         $export = new Exporter();
         $statement->compile($export)->willReturn('$foo');
-        $this->foo(1, 2)->bar->foo(4, 3);
-        $this->end()->compile($export)->shouldReturn('$foo->foo(1, 2)->bar->foo(4, 3)');
+        $this->foo(1, 2)->shouldReturn($this);
+        $this->end()->compile($export)->shouldReturn('$foo->foo(1, 2)');
     }
 
     function it_allows_to_use_array_access_directly_on_the_chain_object(StatementInterface $statement)

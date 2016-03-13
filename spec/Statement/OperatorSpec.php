@@ -2,8 +2,10 @@
 
 namespace spec\EcomDev\Compiler\Statement;
 
+use EcomDev\Compiler\Exporter;
 use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\Statement\Operator;
+use EcomDev\Compiler\Statement\Scalar;
 use EcomDev\Compiler\StatementInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -195,6 +197,29 @@ class OperatorSpec extends ObjectBehavior
 
         $this->compile($export)->shouldReturn('true || false');
     }
+
+    function it_compiles_a_statement_with_or_operator_and_groups_another_operator_statement()
+    {
+        $export = new Exporter();
+        $left = new Operator(new Scalar(1), new Scalar(true), Operator::BOOL_AND);
+        $right = new Operator(new Scalar(2), new Scalar(false), Operator::BOOL_AND);
+
+        $this->beConstructedWith($left, $right, Operator::BOOL_OR);
+
+        $this->compile($export)->shouldReturn('(1 && true) || (2 && false)');
+    }
+
+    function it_compiles_a_statement_with_or_operator_and_groups_only_one_another_operator_statement()
+    {
+        $export = new Exporter();
+        $left = new Scalar(1);
+        $right = new Operator(new Scalar(2), new Scalar(false), Operator::BOOL_AND);
+
+        $this->beConstructedWith($left, $right, Operator::BOOL_OR);
+
+        $this->compile($export)->shouldReturn('1 || (2 && false)');
+    }
+
 
     function it_throws_an_exception_with_wrong_operator_type(
         StatementInterface $left,

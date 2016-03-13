@@ -22,6 +22,22 @@ class ExporterSpec extends ObjectBehavior
         $this->export(1)->shouldReturn('1');
     }
 
+
+    function it_should_export_true_as_lowecased_true()
+    {
+        $this->export(true)->shouldReturn('true');
+    }
+
+    function it_should_export_false_as_lowecased_false()
+    {
+        $this->export(false)->shouldReturn('false');
+    }
+
+    function it_should_export_null_as_lowecased_null()
+    {
+        $this->export(null)->shouldReturn('null');
+    }
+
     function it_should_export_string_as_string()
     {
         $this->export('test_string')->shouldReturn("'test_string'");
@@ -36,12 +52,6 @@ class ExporterSpec extends ObjectBehavior
     {
         $statement->compile($this)->willReturn('new PHP\\Class()');
         $this->export($statement)->shouldEqual('new PHP\\Class()');
-    }
-
-    function it_should_be_possible_to_export_exportable_ojects(ExportableInterface $exportable)
-    {
-        $exportable->export()->willReturn('true');
-        $this->export($exportable)->shouldEqual("'true'");
     }
 
     function it_should_rise_an_exception_if_object_is_passed_that_does_not_implement_statement_interface()

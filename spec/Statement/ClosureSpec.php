@@ -58,7 +58,7 @@ class ClosureSpec extends ObjectBehavior
     function it_allows_adding_items_to_container(StatementInterface $body,
                                                  ContainerInterface $container)
     {
-        $container->add($body)->willReturn($container);
+        $container->add($body)->shouldBeCalled()->willReturn($container);
         $this->beConstructedWith([], $container);
         $this->add($body)->shouldReturn($this);
     }

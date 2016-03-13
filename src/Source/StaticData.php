@@ -9,23 +9,8 @@ use EcomDev\Compiler\SourceInterface;
 /**
  * Static data source provider
  */
-class StaticData implements SourceInterface
+class StaticData extends AbstractSource
 {
-    /**
-     * Identifier of the source
-     *
-     * @var string
-     */
-    private $id;
-
-
-    /**
-     * Checksum of the source
-     *
-     * @var string
-     */
-    private $checksum;
-
     /**
      * Container with statements
      *
@@ -42,29 +27,8 @@ class StaticData implements SourceInterface
      */
     public function __construct($id, $checksum, ContainerInterface $container)
     {
-        $this->id = $id;
-        $this->checksum = $checksum;
+        parent::__construct($id, $checksum);
         $this->container = $container;
-    }
-
-    /**
-     * Returns identifier
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Returns checksum
-     *
-     * @return string
-     */
-    public function getChecksum()
-    {
-        return $this->checksum;
     }
 
     /**
@@ -85,8 +49,8 @@ class StaticData implements SourceInterface
     public function export()
     {
         return [
-            'id' => $this->id,
-            'checksum' => $this->checksum,
+            'id' => $this->getId(),
+            'checksum' => $this->getChecksum(),
             'container' => new Call('unserialize', [serialize($this->container)])
         ];
     }
