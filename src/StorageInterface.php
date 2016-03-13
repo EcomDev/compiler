@@ -19,7 +19,7 @@ interface StorageInterface
     public function store(SourceInterface $source);
 
     /**
-     * Tries to find reference within driver by source
+     * Tries to find reference within storage by using reference for search
      *
      * @param SourceInterface $source
      *
@@ -29,13 +29,19 @@ interface StorageInterface
 
 
     /**
-     * Tries to find reference within driver by id
+     * Tries to find reference within storage by id
      *
      * @param string $id
      *
      * @return bool|Storage\ReferenceInterface
      */
     public function findById($id);
+
+    /**
+     * @param Storage\ReferenceInterface $referenceInterface
+     * @return mixed
+     */
+    public function get(Storage\ReferenceInterface $referenceInterface);
 
     /**
      * Tries to interpret the existing reference

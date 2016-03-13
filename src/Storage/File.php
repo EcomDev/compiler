@@ -1,6 +1,6 @@
 <?php
 
-namespace EcomDev\Compiler\Storage\Driver;
+namespace EcomDev\Compiler\Storage;
 
 use EcomDev\Compiler\DispersionInterface;
 use EcomDev\Compiler\ExportableInterface;
@@ -9,17 +9,13 @@ use EcomDev\Compiler\ObjectBuilderInterface;
 use EcomDev\Compiler\Statement\ContainerInterface;
 use EcomDev\Compiler\SourceInterface;
 use EcomDev\Compiler\StatementInterface;
-use EcomDev\Compiler\Storage\DriverInterface;
-use EcomDev\Compiler\Storage\IndexFactory;
-use EcomDev\Compiler\Storage\IndexInterface;
-use EcomDev\Compiler\Storage\ReferenceFactory;
-use EcomDev\Compiler\Storage\ReferenceInterface;
+use EcomDev\Compiler\StorageInterface;
 
 /**
  * File storage driver for compiler
  *
  */
-class File implements DriverInterface
+class File implements StorageInterface
 {
     /**
      * Directory permission key

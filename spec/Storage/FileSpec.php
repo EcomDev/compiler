@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\EcomDev\Compiler\Storage\Driver;
+namespace spec\EcomDev\Compiler\Storage;
 
 use EcomDev\Compiler\DispersionInterface;
 use EcomDev\Compiler\Exporter;
@@ -10,7 +10,7 @@ use EcomDev\Compiler\Statement\Container;
 use EcomDev\Compiler\Statement\ReturnStatement;
 use EcomDev\Compiler\Statement\Scalar;
 use EcomDev\Compiler\Source\StaticData;
-use EcomDev\Compiler\Storage\Driver\File;
+use EcomDev\Compiler\Storage\File;
 use EcomDev\Compiler\Storage\Index;
 use EcomDev\Compiler\Storage\IndexFactory;
 use EcomDev\Compiler\Storage\ReferenceFactory;
@@ -112,7 +112,7 @@ class FileSpec extends ObjectBehavior
         );
 
         $builder->bind(Argument::type('Closure'))->shouldBeCalled()->willReturn(function () {});
-        $this->shouldImplement('EcomDev\Compiler\Storage\DriverInterface');
+        $this->shouldImplement('EcomDev\Compiler\StorageInterface');
     }
 
     function it_allows_to_specify_permission_for_created_directory()
