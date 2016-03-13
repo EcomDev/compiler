@@ -6,15 +6,12 @@ use EcomDev\Compiler\DispersionInterface;
 use EcomDev\Compiler\ExportableInterface;
 use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\ObjectBuilderInterface;
-use EcomDev\Compiler\Statement\Container;
 use EcomDev\Compiler\Statement\ContainerInterface;
-use EcomDev\Compiler\Statement\ReturnStatement;
 use EcomDev\Compiler\SourceInterface;
 use EcomDev\Compiler\StatementInterface;
 use EcomDev\Compiler\Storage\DriverInterface;
 use EcomDev\Compiler\Storage\ReferenceFactory;
 use EcomDev\Compiler\Storage\ReferenceInterface;
-use PDepend\Source\AST\State;
 
 /**
  * File storage driver for compiler
