@@ -13,7 +13,6 @@ use EcomDev\Compiler\StorageInterface;
 
 /**
  * File storage driver for compiler
- *
  */
 class File implements StorageInterface
 {
@@ -166,6 +165,7 @@ class File implements StorageInterface
      * or if checksum is different
      *
      * @param SourceInterface $source
+     *
      * @return ReferenceInterface
      */
     public function store(SourceInterface $source)
@@ -196,6 +196,7 @@ class File implements StorageInterface
      * Finds reference in available index by source identifier
      *
      * @param SourceInterface $source
+     *
      * @return bool|ReferenceInterface
      */
     public function find(SourceInterface $source)
@@ -225,6 +226,7 @@ class File implements StorageInterface
      * Returns string content of the file
      *
      * @param ReferenceInterface $reference
+     *
      * @return string
      */
     public function get(ReferenceInterface $reference)
@@ -285,6 +287,7 @@ class File implements StorageInterface
      *
      * @param ReferenceInterface $reference
      * @param $filePath
+     *
      * @return $this
      */
     private function validateReference(ReferenceInterface $reference, $filePath)
@@ -301,6 +304,7 @@ class File implements StorageInterface
      * Loads or creates a new index
      *
      * @param string $dispersion
+     *
      * @return IndexInterface|false
      */
     private function createIndex($dispersion)
@@ -315,6 +319,7 @@ class File implements StorageInterface
      * Creates directory if it does not exist
      *
      * @param string $path
+     *
      * @return $this
      */
     private function validateDirectory($path)
@@ -331,6 +336,7 @@ class File implements StorageInterface
      *
      * @param ReferenceInterface $reference
      * @param null|string $dispersion
+     *
      * @return string
      */
     private function getReferenceFilePath(ReferenceInterface $reference, $dispersion = null)
@@ -348,6 +354,7 @@ class File implements StorageInterface
      *
      * @param string $filePath
      * @param ContainerInterface|array|string $content
+     *
      * @return $this
      */
     private function writePhpFile($filePath, $content)
@@ -356,7 +363,7 @@ class File implements StorageInterface
 
         if (is_array($content) || $content instanceof \Traversable) {
             $lines = [];
-            /** @var StatementInterface $line */
+            /* @var StatementInterface $line */
             foreach ($content as $line) {
                 $lines[] = sprintf('%s;', $this->export($line));
             }
@@ -381,6 +388,7 @@ class File implements StorageInterface
      * Return exported PHP code
      *
      * @param ExportableInterface|StatementInterface|mixed $value
+     *
      * @return string
      */
     private function export($value)
@@ -418,6 +426,7 @@ class File implements StorageInterface
      * Check for index availability
      *
      * @param string $dispersion
+     *
      * @return IndexInterface|false
      */
     private function loadIndex($dispersion)
@@ -446,6 +455,7 @@ class File implements StorageInterface
      *
      * @param string $dispersion
      * @param IndexInterface $index
+     *
      * @return $this
      */
     private function saveIndex($dispersion, IndexInterface $index)
@@ -475,6 +485,7 @@ class File implements StorageInterface
      *
      * @param string $fileName
      * @param bool $validateFile
+     *
      * @return mixed
      */
     private function includeFile($fileName, $validateFile = true)

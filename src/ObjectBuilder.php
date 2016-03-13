@@ -4,12 +4,16 @@ namespace EcomDev\Compiler;
 
 use EcomDev\Compiler\Statement\Instance;
 
+/**
+ * Default object builder implementation for storage load/save process
+ */
 class ObjectBuilder implements ObjectBuilderInterface
 {
     /**
      * Builds statement based on exportable object
      *
      * @param ExportableInterface $exportable
+     *
      * @return Instance
      */
     public function build(ExportableInterface $exportable)
@@ -22,6 +26,7 @@ class ObjectBuilder implements ObjectBuilderInterface
      * Binds Closure to itself
      *
      * @param \Closure $closure
+     *
      * @return \Closure
      */
     public function bind(\Closure $closure)
@@ -33,6 +38,7 @@ class ObjectBuilder implements ObjectBuilderInterface
      * Returns array for possible exportable objects
      *
      * @param array $array
+     *
      * @return mixed[]
      */
     protected function resolveArray(array $array)

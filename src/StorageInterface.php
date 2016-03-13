@@ -38,7 +38,10 @@ interface StorageInterface
     public function findById($id);
 
     /**
+     * Returns stored php code as a string for specified reference
+     *
      * @param Storage\ReferenceInterface $referenceInterface
+     *
      * @return mixed
      */
     public function get(Storage\ReferenceInterface $referenceInterface);

@@ -69,6 +69,7 @@ class Instance implements StatementInterface
      * Returns ordered list of arguments
      *
      * @param array $arguments
+     *
      * @return mixed[]
      */
     private function sortedArguments(array $arguments)

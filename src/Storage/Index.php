@@ -2,7 +2,6 @@
 
 namespace EcomDev\Compiler\Storage;
 
-
 /**
  * Index Implementation
  *

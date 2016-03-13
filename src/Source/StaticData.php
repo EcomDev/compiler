@@ -6,6 +6,9 @@ use EcomDev\Compiler\Statement\Call;
 use EcomDev\Compiler\Statement\ContainerInterface;
 use EcomDev\Compiler\SourceInterface;
 
+/**
+ * Static data source provider
+ */
 class StaticData implements SourceInterface
 {
     /**
