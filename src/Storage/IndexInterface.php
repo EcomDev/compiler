@@ -1,9 +1,8 @@
 <?php
 
-namespace EcomDev\Compiler\Storage\Driver;
+namespace EcomDev\Compiler\Storage;
 
 use EcomDev\Compiler\ExportableInterface;
-use EcomDev\Compiler\Storage\ReferenceInterface;
 
 interface IndexInterface extends ExportableInterface, \Countable
 {

@@ -1,9 +1,7 @@
 <?php
 
-namespace EcomDev\Compiler\Storage\Driver;
+namespace EcomDev\Compiler\Storage;
 
-use EcomDev\Compiler\Statement\Instance;
-use EcomDev\Compiler\Storage\ReferenceInterface;
 
 /**
  * Index Implementation
@@ -111,7 +109,7 @@ class Index implements IndexInterface
     /**
      * Exports class constructor arguments
      *
-     * @return Instance
+     * @return array
      */
     public function export()
     {

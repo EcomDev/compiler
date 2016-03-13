@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\EcomDev\Compiler\Storage\Driver;
+namespace spec\EcomDev\Compiler\Storage;
 
-use EcomDev\Compiler\Storage\Driver\IndexInterface;
+use EcomDev\Compiler\Storage\IndexInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -12,8 +12,8 @@ class IndexFactorySpec extends ObjectBehavior
     {
         $indexOne = $this->create();
         $indexTwo = $this->create();
-        $indexOne->shouldImplement('EcomDev\Compiler\Storage\Driver\Index');
-        $indexTwo->shouldImplement('EcomDev\Compiler\Storage\Driver\Index');
+        $indexOne->shouldImplement('EcomDev\Compiler\Storage\Index');
+        $indexTwo->shouldImplement('EcomDev\Compiler\Storage\Index');
         $indexOne->shouldNotEqual($indexTwo);
     }
 
@@ -31,7 +31,7 @@ class IndexFactorySpec extends ObjectBehavior
         $this
             ->shouldThrow(
                 new \InvalidArgumentException(
-                    'stdClass does not implement EcomDev\Compiler\Storage\Driver\IndexInterface'
+                    'stdClass does not implement EcomDev\Compiler\Storage\IndexInterface'
                 )
             )
             ->duringInstantiation();

@@ -1,6 +1,6 @@
 <?php
 
-namespace EcomDev\Compiler\Storage\Driver;
+namespace EcomDev\Compiler\Storage;
 
 class IndexFactory
 {
@@ -16,11 +16,11 @@ class IndexFactory
      *
      * @param null|string $className
      */
-    public function __construct($className = 'EcomDev\Compiler\Storage\Driver\Index')
+    public function __construct($className = 'EcomDev\Compiler\Storage\Index')
     {
         $this->reflection = new \ReflectionClass($className);
 
-        $interface = 'EcomDev\Compiler\Storage\Driver\IndexInterface';
+        $interface = 'EcomDev\Compiler\Storage\IndexInterface';
 
         if (!$this->reflection->implementsInterface($interface)) {
             throw new \InvalidArgumentException(sprintf('%s does not implement %s', $className, $interface));

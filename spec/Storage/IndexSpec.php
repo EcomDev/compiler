@@ -1,8 +1,7 @@
 <?php
 
-namespace spec\EcomDev\Compiler\Storage\Driver;
+namespace spec\EcomDev\Compiler\Storage;
 
-use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\Storage\ReferenceInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

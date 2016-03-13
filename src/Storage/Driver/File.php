@@ -10,6 +10,8 @@ use EcomDev\Compiler\Statement\ContainerInterface;
 use EcomDev\Compiler\SourceInterface;
 use EcomDev\Compiler\StatementInterface;
 use EcomDev\Compiler\Storage\DriverInterface;
+use EcomDev\Compiler\Storage\IndexFactory;
+use EcomDev\Compiler\Storage\IndexInterface;
 use EcomDev\Compiler\Storage\ReferenceFactory;
 use EcomDev\Compiler\Storage\ReferenceInterface;
 
@@ -131,6 +133,7 @@ class File implements DriverInterface
      * @param IndexFactory $indexFactory
      * @param ReferenceFactory $referenceFactory
      * @param ExporterInterface $export
+     * @param ObjectBuilderInterface $objectBuilder
      * @param int[] $options
      */
     public function __construct(
