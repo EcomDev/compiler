@@ -33,4 +33,27 @@ interface IndexInterface extends ExportableInterface, \Countable
      * @return ReferenceInterface
      */
     public function get($id);
+
+    /**
+     * Removes a reference by identifier
+     *
+     * @param string $id
+     *
+     * @return $this
+     */
+    public function remove($id);
+
+    /**
+     * Returns all stored reference ids in index
+     *
+     * @return string[]
+     */
+    public function inspect();
+
+    /**
+     * Check if index has been changed
+     *
+     * @return bool
+     */
+    public function isChanged();
 }

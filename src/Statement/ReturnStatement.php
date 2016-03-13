@@ -2,10 +2,10 @@
 
 namespace EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\StatementInterface;
 
-class ReturnStatement
+class ReturnStatement implements StatementInterface
 {
     /**
      * Expression for return statement
@@ -27,11 +27,11 @@ class ReturnStatement
     /**
      * Exports a return statement
      *
-     * @param ExportInterface $exporter
+     * @param ExporterInterface $exporter
      *
      * @return string
      */
-    public function compile(ExportInterface $exporter)
+    public function compile(ExporterInterface $exporter)
     {
         $statement = 'return %s';
 

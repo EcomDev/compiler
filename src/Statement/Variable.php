@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\StatementInterface;
 
 /**
@@ -30,11 +30,11 @@ class Variable implements StatementInterface
     /**
      * Compiles variable statement
      *
-     * @param ExportInterface $export
+     * @param ExporterInterface $export
      *
      * @return string
      */
-    public function compile(ExportInterface $export)
+    public function compile(ExporterInterface $export)
     {
         if ($this->name instanceof StatementInterface) {
             return sprintf('${%s}', $this->name->compile($export));

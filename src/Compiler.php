@@ -25,11 +25,11 @@ class Compiler implements CompilerInterface
      * Returns a reference in the storage
      * after compiling source
      *
-     * @param Statement\SourceInterface $source
+     * @param SourceInterface $source
      *
      * @return Storage\ReferenceInterface
      */
-    public function compile(Statement\SourceInterface $source)
+    public function compile(SourceInterface $source)
     {
         $reference = $this->storage->find($source);
         if ($reference === false

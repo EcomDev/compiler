@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler\Storage;
 
-use EcomDev\Compiler\Statement\SourceInterface;
+use EcomDev\Compiler\SourceInterface;
 
 /**
  * Interface for a storage driver
@@ -14,18 +14,27 @@ interface DriverInterface
      *
      * @param SourceInterface $source
      *
-     * @return $this
+     * @return ReferenceInterface
      */
     public function store(SourceInterface $source);
 
     /**
-     * Find reference within a source
+     * Find reference by a provided source
      *
      * @param SourceInterface $source
      *
      * @return ReferenceInterface|bool
      */
     public function find(SourceInterface $source);
+
+    /**
+     * Find reference by a identifier
+     *
+     * @param string $id
+     *
+     * @return ReferenceInterface|bool
+     */
+    public function findById($id);
 
     /**
      * Interprets php code from reference

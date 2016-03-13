@@ -1,8 +1,6 @@
 <?php
 
-namespace EcomDev\Compiler\Statement;
-
-use EcomDev\Compiler\ExportableInterface;
+namespace EcomDev\Compiler;
 
 /**
  * Source interface
@@ -12,7 +10,7 @@ interface SourceInterface extends ExportableInterface
     /**
      * Returns a statements from source
      *
-     * @return ContainerInterface
+     * @return Statement\ContainerInterface
      * @throws \RuntimeException in case if source cannot be loaded by some reason
      */
     public function load();

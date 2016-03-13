@@ -7,11 +7,11 @@ interface CompilerInterface
     /**
      * Returns a reference in the storage
      *
-     * @param Statement\SourceInterface $source
+     * @param SourceInterface $source
      *
      * @return Storage\ReferenceInterface
      */
-    public function compile(Statement\SourceInterface $source);
+    public function compile(SourceInterface $source);
 
 
     /**

@@ -2,8 +2,8 @@
 
 namespace spec\EcomDev\Compiler\Storage;
 
-use EcomDev\Compiler\Statement\Source\StaticData;
-use EcomDev\Compiler\Statement\SourceInterface;
+use EcomDev\Compiler\Source\StaticData;
+use EcomDev\Compiler\SourceInterface;
 use EcomDev\Compiler\Storage\ReferenceInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

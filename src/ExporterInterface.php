@@ -3,9 +3,9 @@
 namespace EcomDev\Compiler;
 
 /**
- * Export interface
+ * Exporter interface
  */
-interface ExportInterface
+interface ExporterInterface
 {
     /**
      * Exports php value into var export statement

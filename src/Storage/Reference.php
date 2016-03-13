@@ -3,7 +3,7 @@
 namespace EcomDev\Compiler\Storage;
 
 use EcomDev\Compiler\Statement\Instance;
-use EcomDev\Compiler\Statement\SourceInterface;
+use EcomDev\Compiler\SourceInterface;
 
 class Reference implements ReferenceInterface
 {
@@ -67,12 +67,16 @@ class Reference implements ReferenceInterface
     }
 
     /**
-     * Returns an exportable PHP code for a reference
+     * Returns an arguments fro constructing the class
      *
-     * @return Instance
+     * @return array
      */
     public function export()
     {
-        return new Instance(get_class($this), [$this->id, $this->checksum, $this->source]);
+        return [
+            'id' => $this->id,
+            'checksum' => $this->checksum,
+            'source' => $this->source
+        ];
     }
 }

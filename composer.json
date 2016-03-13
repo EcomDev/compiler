@@ -11,7 +11,8 @@
         "mikey179/vfsStream": "^1.6",
         "php": ">= 5.4",
         "henrikbjorn/phpspec-code-coverage": "^2.0",
-        "phpspec/nyan-formatters": "^1.0"
+        "phpspec/nyan-formatters": "^1.0",
+        "ecomdev/phpspec-file-matcher": "^1.0"
     },
     "license": "OSL-3.0",
     "authors": [
@@ -21,12 +22,14 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {
-        "symfony/filesystem": "~3.0"
-    },
     "autoload": {
         "psr-4": {
             "EcomDev\\Compiler\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\EcomDev\\Compiler\\": "spec/"
         }
     },
     "config": {

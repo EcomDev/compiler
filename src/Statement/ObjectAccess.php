@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\StatementInterface;
 
 /**
@@ -39,11 +39,11 @@ class ObjectAccess implements StatementInterface
     /**
      * Returns compiles object access
      *
-     * @param ExportInterface $export
+     * @param ExporterInterface $export
      *
      * @return string
      */
-    public function compile(ExportInterface $export)
+    public function compile(ExporterInterface $export)
     {
         $object = $this->object->compile($export);
         if ($this->property instanceof StatementInterface) {

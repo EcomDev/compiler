@@ -2,7 +2,7 @@
 
 namespace spec\EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\Export;
+use EcomDev\Compiler\Exporter;
 use EcomDev\Compiler\Statement\Container;
 use EcomDev\Compiler\Statement\Operator;
 use EcomDev\Compiler\StatementInterface;
@@ -15,26 +15,26 @@ class BuilderSpec extends ObjectBehavior
     {
         $statement = $this->scalar('value');
         $statement->shouldHaveType('EcomDev\Compiler\Statement\Scalar');
-        $statement->compile(new Export())->shouldReturn("'value'");
+        $statement->compile(new Exporter())->shouldReturn("'value'");
     }
 
     function it_creates_call_statement()
     {
         $statement = $this->call('strpos', [1, 2, 3]);
         $statement->shouldHaveType('EcomDev\Compiler\Statement\Call');
-        $statement->compile(new Export())->shouldReturn('strpos(1, 2, 3)');
+        $statement->compile(new Exporter())->shouldReturn('strpos(1, 2, 3)');
     }
 
     function it_creates_operator_statement()
     {
         $statement = $this->operator('item', 'value', Operator::EQUAL_STRICT);
         $statement->shouldHaveType('EcomDev\Compiler\Statement\Operator');
-        $statement->compile(new Export())->shouldReturn("'item' === 'value'");
+        $statement->compile(new Exporter())->shouldReturn("'item' === 'value'");
     }
 
     function it_creates_operator_statement_with_statement(StatementInterface $left, StatementInterface $right)
     {
-        $export = new Export();
+        $export = new Exporter();
         $left->compile($export)->willReturn('$this->method');
         $right->compile($export)->willReturn('$var2');
 
@@ -45,7 +45,7 @@ class BuilderSpec extends ObjectBehavior
 
     function it_creates_assignment_operator(StatementInterface $left)
     {
-        $export = new Export();
+        $export = new Exporter();
         $left->compile($export)->willReturn('$var');
         $statement = $this->assign($left, 'value');
         $statement->shouldHaveType('EcomDev\Compiler\Statement\Operator');
@@ -54,7 +54,7 @@ class BuilderSpec extends ObjectBehavior
 
     function it_creates_assignment_operator_with_statement(StatementInterface $left, StatementInterface $right)
     {
-        $export = new Export();
+        $export = new Exporter();
         $left->compile($export)->willReturn('$foo');
         $right->compile($export)->willReturn('$bar');
         $statement = $this->assign($left, $right);
@@ -79,19 +79,19 @@ class BuilderSpec extends ObjectBehavior
     {
         $statement = $this->arrayList();
         $statement->shouldHaveType('EcomDev\Compiler\Statement\ArrayList');
-        $statement->compile(new Export())->shouldReturn('[]');
+        $statement->compile(new Exporter())->shouldReturn('[]');
     }
 
     function it_creates_array_list_with_array_as_argument()
     {
         $statement = $this->arrayList([1, 2, 3]);
         $statement->shouldHaveType('EcomDev\Compiler\Statement\ArrayList');
-        $statement->compile(new Export())->shouldReturn("[\n    1,\n    2,\n    3\n]");
+        $statement->compile(new Exporter())->shouldReturn("[\n    1,\n    2,\n    3\n]");
     }
 
     function it_creates_array_access_statement(StatementInterface $left)
     {
-        $export = new Export();
+        $export = new Exporter();
         $left->compile($export)->willReturn('$this->property');
         $statement = $this->arrayAccess($left, 'value');
         $statement->shouldHaveType('EcomDev\Compiler\Statement\ArrayAccess');
@@ -100,7 +100,7 @@ class BuilderSpec extends ObjectBehavior
 
     function it_creates_array_object_statement(StatementInterface $left)
     {
-        $export = new Export();
+        $export = new Exporter();
         $left->compile($export)->willReturn('$this');
         $statement = $this->objectAccess($left, 'value');
         $statement->shouldHaveType('EcomDev\Compiler\Statement\ObjectAccess');
@@ -111,12 +111,12 @@ class BuilderSpec extends ObjectBehavior
     {
         $statement = $this->variable('foo');
         $statement->shouldHaveType('EcomDev\Compiler\Statement\Variable');
-        $statement->compile(new Export())->shouldReturn('$foo');
+        $statement->compile(new Exporter())->shouldReturn('$foo');
     }
 
     function it_crates_closure_statement(StatementInterface $argument)
     {
-        $export = new Export();
+        $export = new Exporter();
         $argument->compile($export)->willReturn('$argument');
         $statement = $this->closure([$argument]);
         $statement->shouldHaveType('EcomDev\Compiler\Statement\Closure');
@@ -125,7 +125,7 @@ class BuilderSpec extends ObjectBehavior
 
     function it_creates_closure_and_allows_to_add_statement(StatementInterface $argument, StatementInterface $body)
     {
-        $export = new Export();
+        $export = new Exporter();
         $argument->compile($export)->willReturn('$argument');
         $body->compile($export)->willReturn('return 0');
         $statement = $this->closure([$argument]);
@@ -139,7 +139,7 @@ class BuilderSpec extends ObjectBehavior
         StatementInterface $body
     )
     {
-        $export = new Export();
+        $export = new Exporter();
         $body->compile($export)->willReturn('return 0');
         $argument->compile($export)->willReturn('$argument');
         $container = new Container([$body->getWrappedObject()]);
@@ -152,7 +152,7 @@ class BuilderSpec extends ObjectBehavior
     {
         $statement = $this->instance('SplFileObject', [1, 2, 3]);
         $statement->shouldHaveType('EcomDev\Compiler\Statement\Instance');
-        $statement->compile(new Export())->shouldReturn('new SplFileObject(1, 2, 3)');
+        $statement->compile(new Exporter())->shouldReturn('new SplFileObject(1, 2, 3)');
     }
 
     function it_creates_new_chain_builder(StatementInterface $body)

@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler\Storage;
 
-use EcomDev\Compiler\Statement\SourceInterface;
+use EcomDev\Compiler\SourceInterface;
 
 class ReferenceFactory
 {

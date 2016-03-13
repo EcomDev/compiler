@@ -10,9 +10,9 @@ interface StatementInterface
     /**
      * Returns a valid PHP code
      *
-     * @param ExportInterface $export
+     * @param ExporterInterface $export
      *
      * @return string
      */
-    public function compile(ExportInterface $export);
+    public function compile(ExporterInterface $export);
 }

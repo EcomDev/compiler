@@ -2,7 +2,7 @@
 
 namespace spec\EcomDev\Compiler;
 
-use EcomDev\Compiler\Statement\SourceInterface;
+use EcomDev\Compiler\SourceInterface;
 use EcomDev\Compiler\Storage\ReferenceInterface;
 use EcomDev\Compiler\StorageInterface;
 use PhpSpec\ObjectBehavior;

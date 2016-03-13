@@ -5,8 +5,8 @@ namespace spec\EcomDev\Compiler\Storage;
 use EcomDev\Compiler\Statement\Container;
 use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\Statement\Scalar;
-use EcomDev\Compiler\Statement\Source\StaticData;
-use EcomDev\Compiler\Statement\SourceInterface;
+use EcomDev\Compiler\Source\StaticData;
+use EcomDev\Compiler\SourceInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -33,14 +33,10 @@ class ReferenceSpec extends ObjectBehavior
         $this->getSource()->shouldReturn($source);
     }
 
-    function it_should_export(SourceInterface $source)
+    function it_should_return_arguments_for_constructing_itself_on_export(SourceInterface $source)
     {
-        $this->export()->shouldBeLike(
-            new Instance(
-                'EcomDev\Compiler\Storage\Reference',
-                ['identifier', 'checksum', $source->getWrappedObject()]
-            )
+        $this->export()->shouldReturn(
+            ['id' => 'identifier', 'checksum' => 'checksum', 'source' => $source->getWrappedObject()]
         );
     }
-
 }

@@ -22,15 +22,17 @@ class IndexSpec extends ObjectBehavior
         $this->has('identifier')->shouldReturn(false);
     }
 
-    public function it_thorws_an_exception_if_unkown_identifier_is_requested()
+    function it_thorws_an_exception_if_unkown_identifier_is_requested()
     {
         $this->shouldThrow(
             new \InvalidArgumentException('Reference with identifier "identifier" does not exists in current index')
         )->duringGet('identifier');
     }
 
-    public function it_should_return_exact_number_of_references(
-        ReferenceInterface $one, ReferenceInterface $two, ReferenceInterface $three
+    function it_should_return_exact_number_of_references(
+        ReferenceInterface $one,
+        ReferenceInterface $two,
+        ReferenceInterface $three
     )
     {
         $one->getId()->willReturn('one');
@@ -45,7 +47,7 @@ class IndexSpec extends ObjectBehavior
         $this->count()->shouldReturn(3);
     }
 
-    public function it_should_be_possible_to_contruct_it_with_references_as_arguments(
+    function it_should_be_possible_to_contruct_it_with_references_as_arguments(
         ReferenceInterface $one,
         ReferenceInterface $two,
         ReferenceInterface $three
@@ -62,21 +64,70 @@ class IndexSpec extends ObjectBehavior
         $this->get('three')->shouldReturn($three);
     }
 
-    public function it_return_exportable_instance(
+    function it_returns_exportable_instance(
         ReferenceInterface $one,
         ReferenceInterface $two,
         ReferenceInterface $three
     )
     {
         $this->beConstructedWith(['one' => $one, 'two' => $two, 'three' => $three]);
-        $this->export()->shouldBeLike(
-            new Instance('EcomDev\Compiler\Storage\Driver\Index', [
-                [
+        $this->export()->shouldReturn(
+            [
+                'data' => [
                     'one' => $one->getWrappedObject(),
                     'two' => $two->getWrappedObject(),
                     'three' => $three->getWrappedObject()
                 ]
-            ])
+            ]
         );
+    }
+
+    function it_checks_for_modifications_and_returns_false_if_it_is_not_changed(
+        ReferenceInterface $one
+    )
+    {
+        $this->beConstructedWith(['one' => $one]);
+        $this->isChanged()->shouldReturn(false);
+        $this->get('one')->shouldReturn($one);
+        $this->has('one')->shouldReturn(true);
+        $this->isChanged()->shouldReturn(false);
+    }
+
+    function it_checks_for_modifications_and_returns_true_if_any_addition_has_been_done(
+        ReferenceInterface $one,
+        ReferenceInterface $two,
+        ReferenceInterface $three
+    )
+    {
+        $this->beConstructedWith(['one' => $one]);
+        $this->isChanged()->shouldReturn(false);
+        $this->add($two);
+        $this->isChanged()->shouldReturn(true);
+        $this->add($three);
+        $this->isChanged()->shouldReturn(true);
+    }
+
+    function it_is_possible_to_inspect_all_added_reference_identifiers(
+        ReferenceInterface $one,
+        ReferenceInterface $two,
+        ReferenceInterface $three
+    )
+    {
+        $this->beConstructedWith(['one' => $one, 'two' => $two, 'three' => $three]);
+        $this->inspect()->shouldReturn(['one', 'two', 'three']);
+    }
+
+    function it_is_possible_to_remove_one_of_the_references_and_it_notifies_change_flag(
+        ReferenceInterface $one,
+        ReferenceInterface $two,
+        ReferenceInterface $three
+    )
+    {
+        $this->beConstructedWith(['one' => $one, 'two' => $two, 'three' => $three]);
+        $this->isChanged()->shouldReturn(false);
+        $this->remove('one')->shouldReturn($this);
+        $this->isChanged()->shouldReturn(true);
+        $this->inspect()->shouldReturn(['two', 'three']);
+        $this->has('one')->shouldReturn(false);
     }
 }

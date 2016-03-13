@@ -2,7 +2,7 @@
 
 namespace spec\EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\Statement\Operator;
 use EcomDev\Compiler\StatementInterface;
 use PhpSpec\ObjectBehavior;
@@ -13,10 +13,12 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_assign_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::ASSIGN);
+
+        $this->shouldImplement('EcomDev\Compiler\StatementInterface');
 
         $left->compile($export)->willReturn('$var');
         $right->compile($export)->willReturn("'test'");
@@ -27,7 +29,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_assign_multiply_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::ASSIGN_MULTIPLY);
@@ -41,7 +43,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_assign_add_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::ASSIGN_ADD);
@@ -55,7 +57,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_assign_sub_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::ASSIGN_SUB);
@@ -70,7 +72,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_multiply_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::MULTIPLY);
@@ -84,7 +86,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_add_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::ADD);
@@ -98,7 +100,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_sub_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::SUB);
@@ -113,7 +115,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_equal_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::EQUAL);
@@ -127,7 +129,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_equal_strict_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::EQUAL_STRICT);
@@ -141,7 +143,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_not_equal_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::NOT_EQUAL);
@@ -155,7 +157,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_not_equal_strict_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::NOT_EQUAL_STRICT);
@@ -169,7 +171,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_and_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::BOOL_AND);
@@ -183,7 +185,7 @@ class OperatorSpec extends ObjectBehavior
     function it_compiles_a_statement_with_or_operator(
         StatementInterface $left,
         StatementInterface $right,
-        ExportInterface $export
+        ExporterInterface $export
     )
     {
         $this->beConstructedWith($left, $right, Operator::BOOL_OR);

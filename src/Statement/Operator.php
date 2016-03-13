@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\StatementInterface;
 
 /**
@@ -171,11 +171,11 @@ class Operator implements StatementInterface
     /**
      * Compiles an assignment statement
      *
-     * @param ExportInterface $export
+     * @param ExporterInterface $export
      *
      * @return string
      */
-    public function compile(ExportInterface $export)
+    public function compile(ExporterInterface $export)
     {
         return sprintf(
             '%s %s %s',

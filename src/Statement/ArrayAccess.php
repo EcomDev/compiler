@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\StatementInterface;
 
 /**
@@ -39,11 +39,11 @@ class ArrayAccess implements StatementInterface
     /**
      * Compiles a statement
      *
-     * @param ExportInterface $export
+     * @param ExporterInterface $export
      *
      * @return string
      */
-    public function compile(ExportInterface $export)
+    public function compile(ExporterInterface $export)
     {
         $array = $this->array->compile($export);
         $key = $this->key;

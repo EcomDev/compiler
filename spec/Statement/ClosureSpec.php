@@ -2,7 +2,7 @@
 
 namespace spec\EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\Statement\Container;
 use EcomDev\Compiler\Statement\ContainerInterface;
 use EcomDev\Compiler\StatementInterface;
@@ -12,7 +12,7 @@ use Prophecy\Argument;
 class ClosureSpec extends ObjectBehavior
 {
     function it_renders_closure_with_container(
-        ExportInterface $export,
+        ExporterInterface $export,
         StatementInterface $argument1,
         StatementInterface $body1,
         StatementInterface $body2,
@@ -27,12 +27,13 @@ class ClosureSpec extends ObjectBehavior
             ->willReturn(new \ArrayIterator([$body1->getWrappedObject(), $body2->getWrappedObject()]));
 
         $this->beConstructedWith([$argument1], $container);
+        $this->shouldImplement('EcomDev\Compiler\StatementInterface');
         $this->compile($export)
             ->shouldReturn("function (\$argument1) {\n    echo \$argument1;\n    return \$argument1;\n}");
     }
 
     function it_renders_closure_with_container_without_arguments(
-        ExportInterface $export,
+        ExporterInterface $export,
         StatementInterface $body,
         ContainerInterface $container
     )

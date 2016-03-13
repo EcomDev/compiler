@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler;
 
-class Export implements ExportInterface
+class Exporter implements ExporterInterface
 {
     /**
      * Exports php value into var export statement
@@ -13,10 +13,6 @@ class Export implements ExportInterface
      */
     public function export($value)
     {
-        if ($value instanceof ExportableInterface) {
-            $value = $value->export();
-        }
-
         if ($value instanceof StatementInterface) {
             return $value->compile($this);
         }
@@ -24,10 +20,9 @@ class Export implements ExportInterface
         if (is_object($value)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    '%s does not implement %s or %s',
+                    '%s does not implement %s',
                     get_class($value),
-                    'EcomDev\Compiler\StatementInterface',
-                    'EcomDev\Compiler\ExportableInterface'
+                    'EcomDev\Compiler\StatementInterface'
                 )
             );
         }

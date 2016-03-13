@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\EcomDev\Compiler\Statement\Source;
+namespace spec\EcomDev\Compiler\Source;
 
 use EcomDev\Compiler\Statement\Call;
 use EcomDev\Compiler\Statement\Container;
@@ -41,10 +41,11 @@ class StaticDataSpec extends ObjectBehavior
     function it_serializes_only_identifier_checksum_and_container()
     {
         $this->export()->shouldBeLike(
-            new Instance(
-                'EcomDev\Compiler\Statement\Source\StaticData',
-                ['identifier', 'checksum', new Call('unserialize', [serialize($this->container)])]
-            )
+            [
+                'id' => 'identifier',
+                'checksum' => 'checksum',
+                'container' => new Call('unserialize', [serialize($this->container)])
+            ]
         );
     }
 }

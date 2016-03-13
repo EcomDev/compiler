@@ -1,11 +1,10 @@
 <?php
 
-namespace EcomDev\Compiler\Statement\Source;
+namespace EcomDev\Compiler\Source;
 
 use EcomDev\Compiler\Statement\Call;
 use EcomDev\Compiler\Statement\ContainerInterface;
-use EcomDev\Compiler\Statement\Instance;
-use EcomDev\Compiler\Statement\SourceInterface;
+use EcomDev\Compiler\SourceInterface;
 
 class StaticData implements SourceInterface
 {
@@ -76,15 +75,16 @@ class StaticData implements SourceInterface
     }
 
     /**
-     * Returns an exportable statement
+     * Returns list of arguments
      *
-     * @return Instance
+     * @return array
      */
     public function export()
     {
-        return new Instance(
-            get_class($this),
-            [$this->id, $this->checksum, new Call('unserialize', [serialize($this->container)])]
-        );
+        return [
+            'id' => $this->id,
+            'checksum' => $this->checksum,
+            'container' => new Call('unserialize', [serialize($this->container)])
+        ];
     }
 }

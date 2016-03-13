@@ -5,6 +5,12 @@ namespace EcomDev\Compiler\Storage\Driver;
 use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\Storage\ReferenceInterface;
 
+/**
+ * Index Implementation
+ *
+ * Used by driver to store information about references and their locations
+ * As it gives information about its state (if changed), we don't need to perform redundant IO on file chunks.
+ */
 class Index implements IndexInterface
 {
     /**
@@ -15,6 +21,13 @@ class Index implements IndexInterface
     private $data;
 
     /**
+     * Is changed flag
+     *
+     * @var bool
+     */
+    private $isChanged;
+
+    /**
      * Constructs an index with data
      *
      * @param ReferenceInterface[] $data
@@ -22,6 +35,7 @@ class Index implements IndexInterface
     public function __construct(array $data = [])
     {
         $this->data = $data;
+        $this->isChanged = false;
     }
 
     /**
@@ -34,6 +48,7 @@ class Index implements IndexInterface
     public function add(ReferenceInterface $reference)
     {
         $this->data[$reference->getId()] = $reference;
+        $this->isChanged = true;
         return $this;
     }
 
@@ -69,13 +84,38 @@ class Index implements IndexInterface
     }
 
     /**
-     * Exports index as compilable value
+     * Removes reference by identifier from index
+     *
+     * @param string $id
+     *
+     * @return $this
+     */
+    public function remove($id)
+    {
+        unset($this->data[$id]);
+        $this->isChanged = true;
+        return $this;
+    }
+
+    /**
+     * Returns all added reference identifiers to the index
+     *
+     * @return string[]
+     */
+    public function inspect()
+    {
+        return array_keys($this->data);
+    }
+
+
+    /**
+     * Exports class constructor arguments
      *
      * @return Instance
      */
     public function export()
     {
-        return new Instance(get_class($this), [$this->data]);
+        return ['data' => $this->data];
     }
 
     /**
@@ -86,5 +126,15 @@ class Index implements IndexInterface
     public function count()
     {
         return count($this->data);
+    }
+
+    /**
+     * Returns true if any modification has been done to index
+     *
+     * @return bool
+     */
+    public function isChanged()
+    {
+        return $this->isChanged;
     }
 }

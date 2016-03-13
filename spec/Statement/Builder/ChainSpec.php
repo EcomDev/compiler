@@ -2,7 +2,7 @@
 
 namespace spec\EcomDev\Compiler\Statement\Builder;
 
-use EcomDev\Compiler\Export;
+use EcomDev\Compiler\Exporter;
 use EcomDev\Compiler\Statement\Builder;
 use EcomDev\Compiler\StatementInterface;
 use PhpSpec\ObjectBehavior;
@@ -17,7 +17,7 @@ class ChainSpec extends ObjectBehavior
 
     function it_allows_to_create_property_chain_on_statement(StatementInterface $statement)
     {
-        $export = new Export();
+        $export = new Exporter();
         $statement->compile($export)->willReturn('$this');
         $this->property('foo1')->shouldReturn($this);
         $this->property('foo2')->shouldReturn($this);
@@ -29,7 +29,7 @@ class ChainSpec extends ObjectBehavior
 
     function it_allows_to_create_method_chain_on_statement(StatementInterface $statement)
     {
-        $export = new Export();
+        $export = new Exporter();
         $statement->compile($export)->willReturn('$this');
         $this->method('foo1')->shouldReturn($this);
         $this->method('foo2', [1, 2, 3])->shouldReturn($this);
@@ -40,7 +40,7 @@ class ChainSpec extends ObjectBehavior
 
     function it_allows_to_create_array_chain_on_statement(StatementInterface $statement)
     {
-        $export = new Export();
+        $export = new Exporter();
         $statement->compile($export)->willReturn('$item');
         $this->assoc('foo1')->shouldReturn($this);
         $this->assoc('foo2')->shouldReturn($this);
@@ -51,7 +51,7 @@ class ChainSpec extends ObjectBehavior
 
     function it_allows_to_create_array_property_method_chain_on_statement(StatementInterface $statement)
     {
-        $export = new Export();
+        $export = new Exporter();
         $statement->compile($export)->willReturn('$foo');
         $this->assoc('bar')->property('foo')->method('bar', ['foo']);
         $end = $this->end();

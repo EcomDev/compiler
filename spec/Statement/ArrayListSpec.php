@@ -2,13 +2,18 @@
 
 namespace spec\EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class ArrayListSpec extends ObjectBehavior
 {
-    function it_is_possible_to_add_array_items(ExportInterface $export)
+    function it_implements_statement_interface()
+    {
+        $this->shouldImplement('EcomDev\Compiler\StatementInterface');
+    }
+
+    function it_is_possible_to_add_array_items(ExporterInterface $export)
     {
         $this->add('item1')->shouldReturn($this);
         $this->add('item2')->shouldReturn($this);
@@ -19,7 +24,7 @@ class ArrayListSpec extends ObjectBehavior
         $this->compile($export)->shouldReturn("['item1', 'item2']");
     }
 
-    function it_exports_array_multiple_line_if_more_than_two_items_are_added(ExportInterface $export)
+    function it_exports_array_multiple_line_if_more_than_two_items_are_added(ExporterInterface $export)
     {
         $this->add('item1')->shouldReturn($this);
         $this->add('item2')->shouldReturn($this);
@@ -32,7 +37,7 @@ class ArrayListSpec extends ObjectBehavior
         $this->compile($export)->shouldReturn("[\n    'item1',\n    'item2',\n    'item3'\n]");
     }
 
-    function it_takes_argument_as_initial_list(ExportInterface $export)
+    function it_takes_argument_as_initial_list(ExporterInterface $export)
     {
         $this->beConstructedWith(['item1', 'item2']);
         $this->add('item3')->shouldReturn($this);

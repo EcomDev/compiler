@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler\Statement;
 
-use EcomDev\Compiler\ExportInterface;
+use EcomDev\Compiler\ExporterInterface;
 use EcomDev\Compiler\StatementInterface;
 
 /**
@@ -32,11 +32,11 @@ class Scalar implements StatementInterface
     /**
      * Compiles normal scalar value
      *
-     * @param ExportInterface $export
+     * @param ExporterInterface $export
      *
      * @return string
      */
-    public function compile(ExportInterface $export)
+    public function compile(ExporterInterface $export)
     {
         return $export->export($this->value);
     }

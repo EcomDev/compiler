@@ -12,20 +12,30 @@ interface StorageInterface
     /**
      * Stores reference in the storage
      *
-     * @param Statement\SourceInterface $source
+     * @param SourceInterface $source
      *
      * @return Storage\ReferenceInterface
      */
-    public function store(Statement\SourceInterface $source);
+    public function store(SourceInterface $source);
 
     /**
-     * Tries to find reference within multiple storage
+     * Tries to find reference within driver by source
      *
-     * @param Statement\SourceInterface $source
+     * @param SourceInterface $source
      *
      * @return bool|Storage\ReferenceInterface
      */
-    public function find(Statement\SourceInterface $source);
+    public function find(SourceInterface $source);
+
+
+    /**
+     * Tries to find reference within driver by id
+     *
+     * @param string $id
+     *
+     * @return bool|Storage\ReferenceInterface
+     */
+    public function findById($id);
 
     /**
      * Tries to interpret the existing reference

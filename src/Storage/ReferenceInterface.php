@@ -3,7 +3,7 @@
 namespace EcomDev\Compiler\Storage;
 
 use EcomDev\Compiler\ExportableInterface;
-use EcomDev\Compiler\Statement\SourceInterface;
+use EcomDev\Compiler\SourceInterface;
 
 /**
  * Reference for storage data
