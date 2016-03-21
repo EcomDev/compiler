@@ -6,6 +6,7 @@ use EcomDev\Compiler\Exporter;
 use EcomDev\Compiler\Statement\Container;
 use EcomDev\Compiler\Statement\Operator;
 use EcomDev\Compiler\StatementInterface;
+use PDepend\Source\AST\State;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -162,13 +163,21 @@ class BuilderSpec extends ObjectBehavior
         $statement->compile(new Exporter())->shouldReturn('$foo');
     }
 
-    function it_crates_closure_statement(StatementInterface $argument)
+    function it_creates_closure_argument_statement(StatementInterface $argument)
     {
         $export = new Exporter();
         $argument->compile($export)->willReturn('$argument');
         $statement = $this->closure([$argument]);
         $statement->shouldHaveType('EcomDev\Compiler\Statement\Closure');
         $statement->compile($export)->shouldReturn("function (\$argument) {\n\n}");
+    }
+
+    function it_creates_closure_with_string_argument_and_converts_it_to_variable_statement()
+    {
+        $export = new Exporter();
+        $statement = $this->closure(['var1', 'var2']);
+        $statement->shouldHaveType('EcomDev\Compiler\Statement\Closure');
+        $statement->compile($export)->shouldReturn("function (\$var1, \$var2) {\n\n}");
     }
 
     function it_creates_closure_and_allows_to_add_statement(StatementInterface $argument, StatementInterface $body)
@@ -217,6 +226,21 @@ class BuilderSpec extends ObjectBehavior
         $chain->shouldImplement('EcomDev\Compiler\Statement\Builder\Chain');
         $chain->callSomeMethod();
         $chain->end()->compile($export)->shouldReturn('$this->callSomeMethod()');
+    }
+
+    function it_creates_new_return_value_statement_with_scalar_value()
+    {
+        $export = new Exporter();
+        $return = $this->returnValue(true);
+        $return->compile($export)->shouldReturn('return true');
+    }
+
+    function it_creates_new_return_value_statement_from_statement_instance(StatementInterface $statement)
+    {
+        $export = new Exporter();
+        $statement->compile($export)->shouldBeCalled()->willReturn('$variable');
+        $return = $this->returnValue($statement);
+        $return->compile($export)->shouldReturn('return $variable');
     }
 
     public function getMatchers()

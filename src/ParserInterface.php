@@ -12,7 +12,7 @@ interface ParserInterface
      *
      * @param mixed $data
      *
-     * @return StatementInterface[]
+     * @return Statement\ContainerInterface
      */
     public function parse($data);
 }

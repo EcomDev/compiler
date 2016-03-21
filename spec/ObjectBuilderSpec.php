@@ -69,10 +69,6 @@ class ObjectBuilderSpec extends ObjectBehavior
             ->duringShared('shared_instance');
     }
 
-
-
-
-
     function it_should_resolve_exportables_in_argument_list(
         ExportableInterface $exportableMain,
         ExportableInterface $exportableChild,

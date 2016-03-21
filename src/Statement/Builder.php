@@ -148,6 +148,12 @@ class Builder
             $body = $this->container();
         }
 
+        foreach ($arguments as $index => $argument) {
+            if (is_string($argument)) {
+                $arguments[$index] = $this->variable($argument);
+            }
+        }
+
         return new Closure($arguments, $body);
     }
 
@@ -231,5 +237,16 @@ class Builder
     public function this()
     {
         return $this->chain($this->variable('this'));
+    }
+
+    /**
+     * Creates a new return statement
+     *
+     * @param string $value
+     * @return ReturnStatement
+     */
+    public function returnValue($value)
+    {
+        return new ReturnStatement($value);
     }
 }

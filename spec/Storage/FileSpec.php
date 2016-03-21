@@ -71,8 +71,9 @@ class FileSpec extends ObjectBehavior
         $this->indexFactory = new IndexFactory();
         $this->referenceFactory = new ReferenceFactory();
         $this->dispersion = $dispersion;
-        $this->export = new Exporter();
+
         $this->objectBuilder = new ObjectBuilder(new Builder());
+        $this->export = new Exporter($this->objectBuilder);
 
         $this->vfs = $this->setupFileSystem();
 

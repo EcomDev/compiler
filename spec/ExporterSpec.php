@@ -3,7 +3,9 @@
 namespace spec\EcomDev\Compiler;
 
 use EcomDev\Compiler\ExportableInterface;
+use EcomDev\Compiler\ObjectBuilderInterface;
 use EcomDev\Compiler\Source\StaticData;
+use EcomDev\Compiler\Statement\Instance;
 use EcomDev\Compiler\StatementInterface;
 use EcomDev\Compiler\Storage\Reference;
 use PDepend\Source\AST\State;
@@ -58,5 +60,15 @@ class ExporterSpec extends ObjectBehavior
     {
         $message = 'stdClass does not implement EcomDev\Compiler\StatementInterface';
         $this->shouldThrow(new \InvalidArgumentException($message))->during('export', [new \stdClass()]);
+    }
+
+    function it_should_be_possible_use_exportable_interface_for_exporting_if_object_builder_is_provided(
+        ExportableInterface $exportable,
+        ObjectBuilderInterface $objectBuilder
+    )
+    {
+        $objectBuilder->build($exportable)->shouldBeCalled()->willReturn(new Instance('stdClass'));
+        $this->beConstructedWith($objectBuilder);
+        $this->export($exportable)->shouldReturn('new stdClass()');
     }
 }

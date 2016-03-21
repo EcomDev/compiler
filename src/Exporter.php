@@ -4,6 +4,13 @@ namespace EcomDev\Compiler;
 
 class Exporter implements ExporterInterface
 {
+    private $objectBuilder;
+
+    public function __construct(ObjectBuilderInterface $objectBuilder = null)
+    {
+        $this->objectBuilder = $objectBuilder;
+    }
+
     /**
      * Exports php value into var export statement
      *
@@ -13,6 +20,10 @@ class Exporter implements ExporterInterface
      */
     public function export($value)
     {
+        if ($this->objectBuilder && $value instanceof ExportableInterface) {
+            $value = $this->objectBuilder->build($value);
+        }
+
         if ($value instanceof StatementInterface) {
             return $value->compile($this);
         }

@@ -95,8 +95,12 @@ class ObjectBuilder implements ObjectBuilderInterface
     }
 
     /**
+     * Shares an object into builder
+     *
      * @param string $id
      * @param mixed $object
+     *
+     * @return $this
      */
     public function share($id, $object)
     {
@@ -105,6 +109,13 @@ class ObjectBuilder implements ObjectBuilderInterface
         return $this;
     }
 
+    /**
+     * Returns a shared object
+     *
+     * @param string $id
+     *
+     * @return mixed
+     */
     public function shared($id)
     {
         if (!isset($this->shared[$id])) {
