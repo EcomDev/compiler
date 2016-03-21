@@ -1,0 +1,11 @@
+suites:
+  default:
+    namespace: EcomDev\Compiler
+    psr4_prefix: EcomDev\Compiler
+    src_path: %paths.config%/src
+    spec_path: %paths.config%
+formatter.name: nyan.cat
+extensions:
+  - PhpSpec\NyanFormattersExtension\Extension
+  - Cjm\PhpSpec\Extension\TypeHintedMethodsExtension
+  - EcomDev\PHPSpec\FileMatcher\Extension
