@@ -207,6 +207,7 @@ class Builder
      *
      * @param array $operands
      * @param $operator
+     *
      * @return Operator
      */
     private function chainMultiOperator(array $operands, $operator)
@@ -243,10 +244,26 @@ class Builder
      * Creates a new return statement
      *
      * @param string $value
+     *
      * @return ReturnStatement
      */
     public function returnValue($value)
     {
         return new ReturnStatement($value);
+    }
+
+    /**
+     * Returns a return closure statement
+     *
+     * @param StatementInterface[]|string[] $arguments
+     * @param StatementInterface[] $body
+     *
+     * @return ReturnStatement
+     */
+    public function returnClosure(array $arguments, array $body = [])
+    {
+        return $this->returnValue(
+            $this->closure($arguments, $this->container($body))
+        );
     }
 }

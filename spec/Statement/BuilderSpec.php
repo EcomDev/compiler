@@ -4,6 +4,7 @@ namespace spec\EcomDev\Compiler\Statement;
 
 use EcomDev\Compiler\Exporter;
 use EcomDev\Compiler\Statement\Container;
+use EcomDev\Compiler\Statement\ContainerInterface;
 use EcomDev\Compiler\Statement\Operator;
 use EcomDev\Compiler\StatementInterface;
 use PDepend\Source\AST\State;
@@ -241,6 +242,16 @@ class BuilderSpec extends ObjectBehavior
         $statement->compile($export)->shouldBeCalled()->willReturn('$variable');
         $return = $this->returnValue($statement);
         $return->compile($export)->shouldReturn('return $variable');
+    }
+
+    function it_creates_new_closure_return_statement(StatementInterface $body)
+    {
+        $export = new Exporter();
+        $body->compile($export)->willReturn('return true')->shouldBeCalled();
+        $return = $this->returnClosure(['arg1', 'arg2'], [$body]);
+        $return->compile($export)->shouldReturn(
+            sprintf('return function ($arg1, $arg2) {%1$s    %2$s%1$s}', PHP_EOL, 'return true;')
+        );
     }
 
     public function getMatchers()

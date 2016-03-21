@@ -92,6 +92,7 @@ class Chain implements \ArrayAccess
      * Prohibits isset() calls
      *
      * @param mixed $offset
+     *
      * @return bool
      * @throws \RuntimeException
      */
@@ -104,6 +105,7 @@ class Chain implements \ArrayAccess
      * ArrayAccess interface implementation to make possible assoc() in a more natural way
      *
      * @param mixed $offset
+     *
      * @return bool
      * @throws \RuntimeException
      */
@@ -141,6 +143,7 @@ class Chain implements \ArrayAccess
      *
      * @param string $name
      * @param array $arguments
+     *
      * @return $this
      */
     public function __call($name, $arguments = [])
@@ -153,6 +156,7 @@ class Chain implements \ArrayAccess
      * Allows chained property access
      *
      * @param $name
+     *
      * @return $this
      */
     public function __get($name)
@@ -165,6 +169,7 @@ class Chain implements \ArrayAccess
      * Adds assign statement to chain
      *
      * @param string $value
+     *
      * @return $this
      */
     private function assign($value)

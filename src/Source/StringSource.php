@@ -41,6 +41,11 @@ class StringSource extends AbstractSource
         $this->string = $string;
     }
 
+    /**
+     * Exports itself for making possible storage
+     *
+     * @return array
+     */
     public function export()
     {
         return [
@@ -50,9 +55,13 @@ class StringSource extends AbstractSource
         ];
     }
 
+    /**
+     * Loads data via parser
+     *
+     * @return Statement\ContainerInterface
+     */
     public function load()
     {
         return $this->parser->parse($this->string);
     }
-
 }

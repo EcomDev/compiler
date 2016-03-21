@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * File source implementation
- *
  */
 class File extends AbstractSource
 {
@@ -49,6 +48,7 @@ class File extends AbstractSource
      * Generates identifier
      *
      * @param string $file
+     *
      * @return string
      */
     private function generateId($file)
@@ -84,5 +84,4 @@ class File extends AbstractSource
     {
         return $this->parser->parse(file_get_contents($this->file));
     }
-
 }
