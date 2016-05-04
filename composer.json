@@ -34,5 +34,8 @@
     },
     "config": {
         "bin-dir": "bin/"
+    },
+    "require": {
+        "psr/cache": "^1.0"
     }
 }

@@ -2,6 +2,7 @@
 
 namespace EcomDev\Compiler\Source;
 
+use EcomDev\Compiler\FileChecksumInterface;
 use EcomDev\Compiler\ParserInterface;
 use EcomDev\Compiler\Statement;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -29,15 +30,11 @@ class File extends AbstractSource
      * Configures source with provided arguments
      *
      * @param ParserInterface $parser
-     * @param $file
-     * @param null $checksum
+     * @param string $file
+     * @param string|FileChecksumInterface $checksum
      */
-    public function __construct(ParserInterface $parser, $file, $checksum = null)
+    public function __construct(ParserInterface $parser, $file, $checksum)
     {
-        if ($checksum === null) {
-            $checksum = md5_file($file);
-        }
-
         $id = $this->generateId($file);
         parent::__construct($id, $checksum);
         $this->parser = $parser;
@@ -74,6 +71,18 @@ class File extends AbstractSource
             'checksum' => $this->getChecksum()
         ];
     }
+
+    public function getChecksum()
+    {
+        $checksum = parent::getChecksum();
+
+        if ($checksum instanceof FileChecksumInterface) {
+            return $checksum->calculate($this->file);
+        }
+
+        return $checksum;
+    }
+
 
     /**
      * Loads a file via parser

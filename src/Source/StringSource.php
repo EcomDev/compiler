@@ -2,6 +2,7 @@
 
 namespace EcomDev\Compiler\Source;
 
+use EcomDev\Compiler\ChecksumInterface;
 use EcomDev\Compiler\ParserInterface;
 use EcomDev\Compiler\Statement;
 
@@ -63,5 +64,15 @@ class StringSource extends AbstractSource
     public function load()
     {
         return $this->parser->parse($this->string);
+    }
+
+    /**
+     * Calculates checksum from checksum model
+     *
+     * @return string
+     */
+    protected function calculateChecksum(ChecksumInterface $checksum)
+    {
+        // TODO: Implement calculateChecksum() method.
     }
 }

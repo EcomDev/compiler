@@ -2,6 +2,8 @@
 
 namespace spec\EcomDev\Compiler\Source;
 
+use EcomDev\Compiler\ChecksumInterface;
+use EcomDev\Compiler\FileChecksumInterface;
 use EcomDev\Compiler\ParserInterface;
 use EcomDev\Compiler\Statement\ContainerInterface;
 use org\bovigo\vfs\vfsStream;
@@ -17,20 +19,27 @@ class FileSpec extends ObjectBehavior
     private $parser;
 
     /**
+     * @var FileChecksumInterface
+     */
+    private $fileChecksum;
+
+    /**
      * Root vfs directory
      *
      * @var vfsStreamDirectory
      */
     private $vfs;
 
-    function let(ParserInterface $parser)
+    function let(ParserInterface $parser, FileChecksumInterface $fileChecksum)
     {
         $this->parser = $parser;
+        $this->fileChecksum = $fileChecksum;
+
         $this->vfs = vfsStream::setup('root', null, [
             'dummy_file1.txt' => 'some_file_content1'
         ]);
 
-        $this->beConstructedWith($parser, $this->vfs->url() . '/dummy_file1.txt');
+        $this->beConstructedWith($parser, $this->vfs->url() . '/dummy_file1.txt', $this->fileChecksum);
     }
 
     function it_should_implement_source_interface()
@@ -38,9 +47,13 @@ class FileSpec extends ObjectBehavior
         $this->shouldImplement('EcomDev\Compiler\SourceInterface');
     }
 
-    function it_should_calculate_checksum_automatically()
+    function it_should_return_checksum_from_checksum_model()
     {
-        $this->getChecksum()->shouldReturn('6123482f7eedd291ed88a37e031456fc');
+        $this->fileChecksum->calculate($this->vfs->getChild('dummy_file1.txt')->url())
+            ->shouldBeCalled()
+            ->willReturn('this_is_checksum');
+
+        $this->getChecksum()->shouldReturn('this_is_checksum');
     }
 
     function it_should_use_base_file_name_as_identifier()
@@ -56,10 +69,12 @@ class FileSpec extends ObjectBehavior
 
     function it_returns_constructed_arguments_with_generated_checksum_for_export()
     {
+        $file = $this->vfs->getChild('dummy_file1.txt')->url();
+        $this->fileChecksum->calculate($file)->willReturn('our_calculated_checksum');
         $this->export()->shouldReturn([
             'parser' => $this->parser->getWrappedObject(),
-            'file' => $this->vfs->url() . '/dummy_file1.txt',
-            'checksum' => '6123482f7eedd291ed88a37e031456fc'
+            'file' => $file,
+            'checksum' => 'our_calculated_checksum'
         ]);
     }
 

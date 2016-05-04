@@ -2,6 +2,7 @@
 
 namespace EcomDev\Compiler\Source;
 
+use EcomDev\Compiler\ChecksumInterface;
 use EcomDev\Compiler\SourceInterface;
 
 abstract class AbstractSource implements SourceInterface

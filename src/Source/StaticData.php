@@ -2,6 +2,7 @@
 
 namespace EcomDev\Compiler\Source;
 
+use EcomDev\Compiler\ChecksumInterface;
 use EcomDev\Compiler\Statement\Call;
 use EcomDev\Compiler\Statement\ContainerInterface;
 use EcomDev\Compiler\SourceInterface;

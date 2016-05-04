@@ -4,8 +4,6 @@ namespace spec\EcomDev\Compiler\Source;
 
 use EcomDev\Compiler\Statement\Call;
 use EcomDev\Compiler\Statement\Container;
-use EcomDev\Compiler\Statement\Instance;
-use EcomDev\Compiler\Statement\Scalar;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -31,6 +29,12 @@ class StaticDataSpec extends ObjectBehavior
     function it_returns_passed_checksum()
     {
         $this->getChecksum()->shouldReturn('checksum');
+    }
+
+    function it_supports_data_checksum_calculation()
+    {
+        $this->beConstructedWith('identifier', 'checksum', $this->container);
+
     }
 
     function it_returns_passed_container()
