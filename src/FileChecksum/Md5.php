@@ -6,6 +6,7 @@ use EcomDev\Compiler\FileChecksumInterface;
 
 /**
  * Md5 file checksum checker
+ * 
  */
 class Md5 implements FileChecksumInterface
 {
