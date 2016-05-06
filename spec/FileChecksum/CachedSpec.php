@@ -2,6 +2,7 @@
 
 namespace spec\EcomDev\Compiler\FileChecksum;
 
+use EcomDev\CacheKey\GeneratorInterface;
 use EcomDev\Compiler\CacheKeyInterface;
 use EcomDev\Compiler\FileChecksumInterface;
 use PhpSpec\ObjectBehavior;
@@ -28,9 +29,9 @@ class CachedSpec extends ObjectBehavior
     /**
      * Cache key model
      *
-     * @var CacheKeyInterface
+     * @var GeneratorInterface
      */
-    private $cacheKey;
+    private $cacheKeyGenerator;
 
     /**
      * @var CacheItemInterface
@@ -40,15 +41,15 @@ class CachedSpec extends ObjectBehavior
     function let(
         CacheItemPoolInterface $cachePool,
         FileChecksumInterface $checksum,
-        CacheKeyInterface $cacheKey,
+        GeneratorInterface $cacheKeyGenerator,
         CacheItemInterface $cacheItem
     ) {
         $this->checksum = $checksum;
         $this->cachePool = $cachePool;
-        $this->cacheKey = $cacheKey;
+        $this->cacheKeyGenerator = $cacheKeyGenerator;
         $this->cacheItem = $cacheItem;
 
-        $this->cacheKey->sanitize('file1.txt')
+        $this->cacheKeyGenerator->generate('file1.txt')
             ->willReturn('cache_key_for_file1_txt')
             ->shouldBeCalled();
 
@@ -56,7 +57,7 @@ class CachedSpec extends ObjectBehavior
             ->getItem('cache_key_for_file1_txt')
             ->willReturn($this->cacheItem);
 
-        $this->beConstructedWith($this->cachePool, $this->checksum, 86400, $this->cacheKey);
+        $this->beConstructedWith($this->cachePool, $this->checksum, 86400, $this->cacheKeyGenerator);
         $this->shouldImplement('EcomDev\Compiler\FileChecksumInterface');
     }
 

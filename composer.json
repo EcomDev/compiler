@@ -2,6 +2,10 @@
     "name": "ecomdev/compiler",
     "description": "Compiler of parseable data structures from (XML, JSON, etc) into PHP code that can be included into application",
     "type": "library",
+    "require": {
+        "psr/cache": "^1.0",
+        "ecomdev/cache-key": "^1.0"
+    },
     "require-dev": {
         "phpspec/phpspec": "^2.4",
         "squizlabs/php_codesniffer": "*",
@@ -34,8 +38,5 @@
     },
     "config": {
         "bin-dir": "bin/"
-    },
-    "require": {
-        "psr/cache": "^1.0"
     }
 }

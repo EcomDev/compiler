@@ -4,9 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "575ac9b1c51edcebd1f26f84b821e675",
-    "content-hash": "6d980bd3ddb3ccb2d51b6435abe64b65",
+    "hash": "feafe88b1e62c468527dd45ddf660d55",
+    "content-hash": "8fa26b3286a6ad6920714b8ba520e780",
     "packages": [
+        {
+            "name": "ecomdev/cache-key",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EcomDev/cache-key.git",
+                "reference": "325226e3a6aeac49fd839ded3c4fd8a887328ac4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EcomDev/cache-key/zipball/325226e3a6aeac49fd839ded3c4fd8a887328ac4",
+                "reference": "325226e3a6aeac49fd839ded3c4fd8a887328ac4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|>=7.0"
+            },
+            "require-dev": {
+                "henrikbjorn/phpspec-code-coverage": "^2.0",
+                "mikey179/vfsstream": "^1.6",
+                "phpmd/phpmd": "^2.3",
+                "phpspec/nyan-formatters": "^1.0",
+                "phpspec/phpspec": "^2.4",
+                "satooshi/php-coveralls": "dev-master",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EcomDev\\CacheKey\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Chepurnyi",
+                    "email": "ivan@ecomdev.org"
+                }
+            ],
+            "description": "Library that allows you to generate cache keys based on various data formats.",
+            "time": "2016-05-05 19:15:43"
+        },
         {
             "name": "psr/cache",
             "version": "1.0.0",

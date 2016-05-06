@@ -2,7 +2,7 @@
 
 namespace EcomDev\Compiler\FileChecksum;
 
-use EcomDev\Compiler\CacheKeyInterface;
+use EcomDev\CacheKey\GeneratorInterface;
 use EcomDev\Compiler\FileChecksumInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -30,11 +30,11 @@ class Cached implements FileChecksumInterface
     private $fileChecksum;
 
     /**
-     * Cache identifier pattern
+     * Cache key generator
      *
-     * @var string
+     * @var GeneratorInterface
      */
-    private $cacheKey;
+    private $cacheKeyGenerator;
 
     /**
      * Cached file checksum calculator constructor
@@ -42,18 +42,18 @@ class Cached implements FileChecksumInterface
      * @param CacheItemPoolInterface $cacheItemPool cache item pool
      * @param FileChecksumInterface $fileChecksum checksum calculator
      * @param int $ttl time to live for cache entry
-     * @param CacheKeyInterface $cacheKey
+     * @param GeneratorInterface $cacheKeyGenerator
      */
     public function __construct(
         CacheItemPoolInterface $cacheItemPool,
         FileChecksumInterface $fileChecksum,
         $ttl,
-        CacheKeyInterface $cacheKey
+        GeneratorInterface $cacheKeyGenerator
     ) {
         $this->cacheItemPool = $cacheItemPool;
         $this->fileChecksum = $fileChecksum;
         $this->ttl = $ttl;
-        $this->cacheKey = $cacheKey;
+        $this->cacheKeyGenerator = $cacheKeyGenerator;
     }
 
     /**
@@ -66,7 +66,7 @@ class Cached implements FileChecksumInterface
      */
     public function calculate($file)
     {
-        $cacheKey = $this->cacheKey->sanitize($file);
+        $cacheKey = $this->cacheKeyGenerator->generate($file);
         $cacheItem = $this->cacheItemPool->getItem($cacheKey);
 
         if ($cacheItem->isHit()) {
